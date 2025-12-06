@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aivertise - AI-Powered Marketing for Law Firms</title>
+    <style>
+        /* General Reset & Body Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            background-color: #0D0D0D; /* Deep Charcoal */
+            color: #FFFFFF; /* Pure White */
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: #00E0FF; /* Electric Cyan */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #00FF99; /* Vibrant Lime Green */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Utility Classes */
+        .text-accent1 { color: #00E0FF; } /* Electric Cyan */
+        .text-accent2 { color: #00FF99; } /* Vibrant Lime Green */
+        .text-secondary { color: #AAAAAA; } /* Medium Gray */
+        .bg-dark { background-color: #0D0D0D; }
+        .bg-medium { background-color: #1A1A1A; } /* Slightly lighter for contrast */
+        .py-section { padding: 5rem 0; }
+        .text-center { text-align: center; }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            border-radius: 5px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: #FFFFFF; /* Clean White */
+            color: #222222; /* Dark Text Gray */
+            box-shadow: 0 4px 15px rgba(0, 224, 255, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: #00E0FF; /* Electric Cyan */
+            color: #0D0D0D; /* Deep Charcoal */
+            box-shadow: 0 6px 20px rgba(0, 224, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: #0D0D0D; /* Deep Charcoal */
+            color: #00E0FF; /* Electric Cyan */
+            border: 2px solid #00E0FF;
+        }
+
+        .btn-secondary:hover {
+            background-color: #00E0FF; /* Electric Cyan */
+            color: #0D0D0D; /* Deep Charcoal */
+        }
+
+        /* Header & Navigation */
+        .header {
+            background-color: #0D0D0D;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        .logo .ai {
+            color: #00E0FF;
+        }
+
+        .nav-menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-menu li {
+            margin-left: 2.5rem;
+        }
+
+        .nav-menu a {
+            color: #FFFFFF;
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background-color: #00E0FF;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            height: 3px;
+            width: 25px;
+            background-color: #FFFFFF;
+            margin-bottom: 5px;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #0D0D0D;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #AAAAAA;
+            margin-bottom: 2.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Services Section */
+        .services {
+            background-color: #0D0D0D;
+            padding: 6rem 0;
+        }
+
+        .services h2 {
+            font-size: 2.8rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background-color: #1A1A1A; /* Slightly lighter dark gray */
+            padding: 2.5rem;
+            border-radius: 10px;
+            text-align: left;
+            border: 1px solid #333333; /* Darker gray for border */
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: #00E0FF;
+        }
+
+        .service-card h3 {
+            font-size: 1.6rem;
+            color: #FFFFFF;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 2.5rem;
+        }
+
+        .service-card h3::before {
+            content: '✦'; /* Simple icon */
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #00E0FF; /* Electric Cyan */
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+
+        .service-card p {
+            color: #AAAAAA;
+            font-size: 1rem;
+        }
+
+        /* About Section */
+        .about {
+            background-color: #0D0D0D;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: #AAAAAA;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p strong {
+            color: #FFFFFF;
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: #0D0D0D;
+            padding: 6rem 0;
+        }
+
+        .contact h2 {
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .contact-form-container {
+            background-color: #1A1A1A;
+            padding: 3rem;
+            border-radius: 10px;
+            max-width: 700px;
+            margin: 0 auto;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.7rem;
+            font-weight: 500;
+            color: #FFFFFF;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: calc(100% - 20px);
+            padding: 12px 10px;
+            background-color: #222222; /* Darker background for input */
+            border: 1px solid #444444;
+            border-radius: 5px;
+            color: #FFFFFF;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00E0FF;
+            box-shadow: 0 0 0 3px rgba(0, 224, 255, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333333;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            color: #AAAAAA;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #0D0D0D;
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid #1A1A1A;
+            color: #AAAAAA;
+            font-size: 0.9rem;
+        }
+
+        .footer p {
+            margin: 0.5rem 0;
+        }
+
+        .footer a {
+            color: #AAAAAA;
+        }
+
+        .footer a:hover {
+            color: #00E0FF;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header .container {
+                flex-wrap: wrap;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #1A1A1A;
+                padding: 1rem 0;
+                margin-top: 1rem;
+                border-radius: 5px;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                margin: 0.5rem 0;
+                text-align: center;
+            }
+
+            .nav-menu a {
+                padding: 0.8rem 1rem;
+                display: block;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                min-height: 70vh;
+                padding: 2rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .py-section {
+                padding: 4rem 0;
+            }
+
+            .services h2, .about h2, .contact h2 {
+                font-size: 2rem;
+            }
+
+            .service-card {
+                padding: 2rem;
+            }
+
+            .contact-form-container {
+                padding: 2rem;
+            }
+
+            .form-group input, .form-group textarea {
+                width: calc(100% - 24px); /* Adjust for padding and border */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+            }
+
+            .btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card h3 {
+                font-size: 1.4rem;
+                padding-left: 2rem;
+            }
+            .service-card h3::before {
+                font-size: 1.6rem;
+            }
+
+            .about-content p {
+                font-size: 1rem;
+            }
+
+            .contact-form-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <span class="ai">AI</span>vertise
+            </div>
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero bg-dark">
+            <div class="container">
+                <div>
+                    <h1>Transforming legal marketing. Unleash precision and efficiency with <span class="text-accent1">Aivertise's AI-driven strategies</span> tailored for <span class="text-accent2">law firms</span>.</h1>
+                    <p class="text-secondary">We harness the power of artificial intelligence to deliver unparalleled growth, client acquisition, and ROI for your practice.</p>
+                    <a href="#contact" class="btn btn-primary">Elevate Your Practice - Book a Free Demo</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="services bg-dark py-section text-center">
+            <div class="container">
+                <h2>Our <span class="text-accent1">AI-Powered</span> Marketing Solutions</h2>
+                <p class="text-secondary">Leverage cutting-edge technology to outperform the competition and secure your firm's future.</p>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>AI-Driven Meta Ads</h3>
+                        <p class="text-secondary">Maximize your reach and ROI on social platforms with intelligent targeting and dynamic creative optimization.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Predictive Google Ads</h3>
+                        <p class="text-secondary">Target high-intent clients with unparalleled accuracy, reducing wasted spend and boosting conversions.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Intelligent SEO Optimization</h3>
+                        <p class="text-secondary">Dominate search rankings with AI-analyzed keywords, content strategies, and technical SEO enhancements.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Personalized Content Strategy</h3>
+                        <p class="text-secondary">Engage your audience with hyper-relevant, AI-generated content ideas and optimized delivery across channels.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Conversion Rate Optimization (CRO)</h3>
+                        <p class="text-secondary">Turn visitors into valuable clients more efficiently with AI-informed website and landing page optimizations.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Advanced Data Analytics</h3>
+                        <p class="text-secondary">Gain actionable insights from your marketing data through sophisticated AI analysis and reporting.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about bg-dark py-section">
+            <div class="container">
+                <h2>About <span class="text-accent1">Aivertise</span></h2>
+                <div class="about-content">
+                    <p class="text-secondary">At <strong>Aivertise</strong>, we believe in the power of innovation to transform businesses. Founded by CEO <strong>Tauras</strong>, our mission is to redefine marketing for the legal industry.</p>
+                    <p class="text-secondary">We combine deep industry insights with state-of-the-art AI technology to deliver unparalleled growth, efficiency, and ROI for law firms. Our commitment is to strategic, data-driven results that propel your practice forward and establish a formidable online presence.</p>
+                    <p class="text-secondary">With Aivertise, you're not just getting a marketing agency; you're gaining a strategic AI partner dedicated to your success.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact bg-dark py-section">
+            <div class="container">
+                <h2>Get In Touch</h2>
+                <div class="contact-form-container">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Your Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="your@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" name="company" placeholder="Your Law Firm Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="6" required placeholder="Tell us about your marketing needs..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
+                    <div class="contact-info">
+                        <p class="text-secondary">Owner & CEO: Tauras</p>
+                        <p class="text-secondary">Email: <a href="mailto:tauras.tob2@gmail.com">tauras.tob2@gmail.com</a></p>
+                        <p class="text-secondary">Website: <a href="https://www.aivertises.com" target="_blank">www.aivertises.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Aivertise. All rights reserved.</p>
+            <p>Created by: ttobulevicius</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Navigation Toggle
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('open'); // Optional: for animating hamburger icon
+            });
+
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('open');
+                    }
+                });
+            });
+
+            // Smooth Scrolling for Anchor Links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Contact Form Submission (basic client-side validation and alert)
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Prevent default form submission
+
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+
+                if (!name || !email || !message) {
+                    alert('Please fill in all required fields (Name, Email, Message).');
+                    return;
+                }
+
+                // Basic email format validation
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(email)) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+
+                // In a real application, you would send this data to a server
+                // using fetch() or XMLHttpRequest. For this exercise, we'll
+                // just show an alert and clear the form.
+                alert('Thank you for your message, ' + name + '! We will get back to you shortly.');
+
+                // Clear the form
+                contactForm.reset();
+            });
+        });
+    </script>
+</body>
+</html>

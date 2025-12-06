@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aivertise - Elevate Your Marketing with AI</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>">
+    <style>
+        /* CSS Variables */
+        :root {
+            --background-primary: #0F0F0F;
+            --background-secondary: #1A1A1A;
+            --text-primary: #FFFFFF;
+            --text-secondary: #E0E0E0;
+            --border-dark: #444444;
+            --accent-blue: #0096C8;
+            --accent-green-bright: #00C864;
+            --accent-green-logo: #1F7D4E;
+        }
+
+        /* General Styling */
+        body {
+            font-family: '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif';
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-primary);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-green-bright);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-primary);
+            font-weight: 700;
+            margin-bottom: 0.5em;
+        }
+
+        p {
+            margin-bottom: 1em;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: var(--text-primary);
+            color: var(--background-primary);
+            border-color: var(--text-primary);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--text-primary);
+            border-color: var(--text-primary);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-primary);
+            border-color: var(--border-dark);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--border-dark);
+            color: var(--text-primary);
+        }
+
+        /* Header & Navigation */
+        .header {
+            background-color: var(--background-primary);
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-dark);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .logo .ai {
+            color: var(--accent-green-logo);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 17px;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+        
+        /* Mobile Navigation Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 30px;
+            height: 20px;
+            justify-content: space-between;
+            z-index: 1001; /* Ensure toggle is above menu when open */
+        }
+
+        .menu-toggle span {
+            height: 2px;
+            width: 100%;
+            background-color: var(--text-primary);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            transform-origin: left center;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* Hero Section */
+        #hero {
+            background-color: var(--background-primary);
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero h1 {
+            font-size: 4.5em;
+            margin-bottom: 0.2em;
+            line-height: 1.1;
+        }
+        
+        #hero h1 .highlight-blue {
+            color: var(--accent-blue);
+        }
+        
+        #hero h1 .highlight-green {
+            color: var(--accent-green-bright);
+        }
+
+        #hero p {
+            font-size: 1.5em;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        /* Services Section */
+        #services {
+            background-color: var(--background-secondary);
+            padding: 100px 0;
+        }
+
+        #services h2, #about h2, #contact h2 {
+            font-size: 3em;
+            margin-bottom: 60px;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background-color: var(--background-primary);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: left;
+            border: 1px solid var(--border-dark);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-card h3 {
+            color: var(--accent-blue);
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 1.1em;
+            line-height: 1.7;
+        }
+
+        /* About Section */
+        #about {
+            background-color: var(--background-primary);
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        #about .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.2em;
+            color: var(--text-secondary);
+        }
+
+        #about .about-content p {
+            margin-bottom: 1.5em;
+        }
+
+        #about .about-content strong {
+            color: var(--text-primary);
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: var(--background-secondary);
+            padding: 100px 0;
+        }
+
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: var(--background-primary);
+            padding: 50px;
+            border-radius: 12px;
+            border: 1px solid var(--border-dark);
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 1.1em;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid var(--border-dark);
+            border-radius: 8px;
+            background-color: var(--background-secondary);
+            color: var(--text-primary);
+            font-size: 1em;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent-blue);
+            outline: none;
+            background-color: var(--background-secondary); /* Keep background same on focus */
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .contact-info {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+        
+        .contact-info a {
+            color: var(--accent-blue);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--background-primary);
+            padding: 40px 0;
+            border-top: 1px solid var(--border-dark);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+        
+        .footer .creator {
+            margin-top: 10px;
+            font-size: 0.8em;
+            color: var(--border-dark);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 992px) {
+            #hero h1 {
+                font-size: 3.5em;
+            }
+            #hero p {
+                font-size: 1.3em;
+            }
+            .hero-actions {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .btn {
+                width: 80%; /* Make buttons full width on small screens */
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 0;
+            }
+            .nav-links {
+                display: none; /* Hide nav links by default on mobile */
+                flex-direction: column;
+                position: absolute;
+                top: 70px; /* Adjust based on header height */
+                left: 0;
+                width: 100%;
+                background-color: var(--background-primary);
+                border-top: 1px solid var(--border-dark);
+                padding: 20px 0;
+                box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+                text-align: center;
+            }
+
+            .menu-toggle {
+                display: flex; /* Show toggle button */
+            }
+
+            #hero h1 {
+                font-size: 2.8em;
+            }
+            #hero p {
+                font-size: 1.1em;
+            }
+            .hero-actions {
+                gap: 10px;
+            }
+            .btn {
+                width: 90%;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+            
+            #services h2, #about h2, #contact h2 {
+                font-size: 2.5em;
+                margin-bottom: 40px;
+            }
+
+            .service-card {
+                padding: 30px 20px;
+            }
+            .service-card h3 {
+                font-size: 1.5em;
+            }
+
+            .contact-form {
+                padding: 30px;
+            }
+            .form-group label {
+                font-size: 1em;
+            }
+            .form-group input, .form-group textarea {
+                padding: 12px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 24px;
+            }
+            #hero h1 {
+                font-size: 2.2em;
+            }
+            #hero p {
+                font-size: 1em;
+            }
+            .btn {
+                padding: 12px 20px;
+                font-size: 15px;
+            }
+            #services h2, #about h2, #contact h2 {
+                font-size: 2em;
+            }
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container nav-container">
+            <a href="#hero" class="logo"><span class="ai">AI</span>vertise</a>
+            <nav>
+                <div class="menu-toggle" id="mobile-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-links" id="nav-menu">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <h1>Elevating Marketing <span class="highlight-green">Firms</span><br>with Cutting-Edge <span class="highlight-blue">AI Advertising</span></h1>
+                <p>Harness the power of artificial intelligence to optimize your campaigns and achieve unparalleled growth in the digital landscape.</p>
+                <div class="hero-actions">
+                    <a href="#contact" class="btn btn-primary">Schedule Your Free Consultation</a>
+                    <a href="#services" class="btn btn-secondary">Explore Our Solutions</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="container">
+                <h2>Our AI-Powered Solutions</h2>
+                <p style="max-width: 800px; margin: 0 auto 50px; font-size: 1.2em;">Aivertise delivers comprehensive AI-driven strategies and tools designed to maximize your marketing impact and ROI.</p>
+                <div class="service-grid">
+                    <div class="service-card">
+                        <h3>Advanced Ad Optimization</h3>
+                        <p>Leverage AI to meticulously optimize your ad spend across platforms like Meta and Google, ensuring peak performance and higher conversion rates.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Predictive Analytics</h3>
+                        <p>Utilize machine learning to forecast market trends, predict campaign outcomes, and make data-driven decisions that stay ahead of the curve.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>AI Content Generation</h3>
+                        <p>Generate compelling ad copy, engaging visuals, and personalized content at scale, drastically reducing creative development time and costs.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Automated Audience Targeting</h3>
+                        <p>Identify and target your ideal customers with precision using AI algorithms that analyze vast datasets for behavioral and demographic insights.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Performance Monitoring & Reporting</h3>
+                        <p>Gain real-time insights with intuitive dashboards and automated reports, allowing for continuous optimization and transparent results.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Custom AI Strategy Development</h3>
+                        <p>Work with our experts to develop a bespoke AI marketing strategy tailored to your specific business goals and industry challenges.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2>About Aivertise</h2>
+                <div class="about-content">
+                    <p>Founded by CEO <strong>Tauras</strong>, Aivertise was born from a vision to revolutionize the marketing industry through intelligent automation and data-driven insights. We empower marketing agencies and businesses to unlock their full potential by integrating cutting-edge artificial intelligence into every facet of their advertising efforts.</p>
+                    <p>Our mission is to provide powerful, intuitive, and scalable AI solutions that transform complex data into actionable strategies, driving superior results and sustainable growth. We believe in building long-term partnerships, guiding our clients through the evolving digital landscape with expertise and innovation.</p>
+                    <p>At Aivertise, we're not just about technology; we're about delivering measurable impact and helping our clients achieve unprecedented success. Join us in shaping the future of marketing.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2>Get in Touch</h2>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                    <div class="contact-info">
+                        <p>Prefer to connect directly? Reach out to Tauras:</p>
+                        <p>Email: <a href="mailto:tauras.tob2@gmail.com">tauras.tob2@gmail.com</a></p>
+                        <p>Website: <a href="https://www.aivertises.com" target="_blank">www.aivertises.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2023 Aivertise. All rights reserved.</p>
+            <p class="creator">Created by: ttobulevicius</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Close mobile menu if open
+                const navMenu = document.getElementById('nav-menu');
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    document.getElementById('mobile-menu').classList.remove('active'); // Remove active state from toggle icon
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+
+        mobileMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenu.classList.toggle('active'); // Add/remove active class for animation
+        });
+
+        // Simple form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // In a real application, you would send this data to a server.
+            // For this single HTML landing page, we'll just simulate success.
+            alert(`Thank you, ${name}! Your message has been received. We'll get back to you shortly at ${email}.`);
+
+            // Optionally clear the form
+            this.reset();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aivertise - Modern Marketing Solutions</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #34495E; /* Dark grey for general text */
+            background-color: #F9FAFC; /* Off-white background */
+        }
+
+        a {
+            text-decoration: none;
+            color: #1A73E8; /* Primary Blue for links */
+        }
+
+        h1, h2, h3 {
+            color: #2C3E50; /* Dark charcoal for headings */
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: #FFFFFF;
+            padding: 20px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #1A73E8; /* Primary Blue for logo */
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: #34495E; /* Dark grey for nav links */
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #1A73E8; /* Primary Blue on hover */
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #E8F0FE; /* Lighter accent blue */
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background-image: linear-gradient(45deg, #E8F0FE, #DCEAFB); /* Subtle gradient */
+        }
+
+        .hero::before, .hero::after { /* Decorative background elements */
+            content: '';
+            position: absolute;
+            background-color: rgba(26, 115, 232, 0.05); /* Very light primary blue */
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .hero::before {
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+        }
+        .hero::after {
+            bottom: -50px;
+            right: -50px;
+            width: 250px;
+            height: 250px;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            color: #2C3E50;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            color: #34495E;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #1A73E8; /* Primary Blue */
+            color: #FFFFFF;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(26, 115, 232, 0.2);
+        }
+
+        .btn:hover {
+            background-color: #1660CC; /* Darker blue on hover */
+            transform: translateY(-2px);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid #ECEFF1; /* Light border */
+        }
+        
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 60px;
+            color: #2C3E50;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .service-item {
+            background-color: #FFFFFF;
+            padding: 40px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            font-size: 3em;
+            color: #1A73E8; /* Primary Blue */
+            margin-bottom: 20px;
+            display: block; /* Ensures emoji is centered and on its own line */
+        }
+
+        .service-item h3 {
+            font-size: 1.5em;
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #2C3E50;
+        }
+
+        .service-item p {
+            font-size: 0.95em;
+            color: #666666;
+            margin-bottom: 0;
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .about-text, .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            justify-content: center;
+        }
+
+        .contact-info, .contact-form-wrapper {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #2C3E50;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+            color: #555555;
+        }
+
+        .contact-info a {
+            display: block;
+            margin-top: 5px;
+            font-weight: 500;
+            color: #1A73E8;
+        }
+
+        .contact-form-wrapper {
+            background-color: #FFFFFF;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #34495E;
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 1px solid #DCDCDC;
+            border-radius: 5px;
+            font-size: 1em;
+            color: #34495E;
+            box-sizing: border-box; /* Important for padding not to exceed width */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #1A73E8; /* Primary Blue */
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form .btn {
+            width: auto;
+            border: none;
+            cursor: pointer;
+            padding: 12px 25px;
+        }
+
+        #form-message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            display: none; /* Hidden by default */
+        }
+        #form-message.success {
+            background-color: #E6FFED;
+            color: #00C853; /* Success green */
+        }
+        #form-message.error {
+            background-color: #FFEEEE;
+            color: #D32F2F; /* Error red */
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2C3E50; /* Dark charcoal */
+            color: #ECF0F1; /* Light grey */
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        footer p {
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        footer a {
+            color: #1A73E8; /* Primary Blue */
+            font-weight: 500;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                margin-top: 20px;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .hero {
+                padding: 80px 0 60px;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .section-title {
+                font-size: 2em;
+                margin-bottom: 40px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content, .contact-content {
+                flex-direction: column;
+            }
+            .about-text, .about-image, .contact-info, .contact-form-wrapper {
+                min-width: unset; /* Remove min-width for mobile */
+                width: 100%;
+            }
+
+            .contact-form-wrapper {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero p {
+                font-size: 1em;
+            }
+            .section-title {
+                font-size: 1.8em;
+            }
+            .btn {
+                padding: 12px 25px;
+                font-size: 0.9em;
+            }
+            .logo {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container navbar">
+            <a href="#home" class="logo">Aivertise</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Elevate Your Brand with Aivertise</h1>
+                <p>Data-driven marketing solutions crafted for modern businesses seeking exceptional growth and measurable results.</p>
+                <a href="#contact" class="btn">Get a Free Consultation</a>
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="container">
+                <h2 class="section-title">Our Marketing Solutions</h2>
+                <div class="services-grid">
+                    <div class="service-item">
+                        <span class="service-icon">📈</span>
+                        <h3>SEO & SEM</h3>
+                        <p>Boost your online visibility and drive organic traffic with expert search engine optimization and marketing strategies.</p>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-icon">📱</span>
+                        <h3>Social Media Marketing</h3>
+                        <p>Engage your audience, build brand loyalty, and expand your reach across all major social media platforms.</p>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-icon">✍️</span>
+                        <h3>Content Marketing</h3>
+                        <p>Create compelling and valuable content that attracts, informs, and converts your target audience into loyal customers.</p>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-icon">📊</span>
+                        <h3>Web Analytics & Reporting</h3>
+                        <p>Gain actionable insights into your marketing performance with detailed analytics and comprehensive reports.</p>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-icon">📧</span>
+                        <h3>Email Marketing</h3>
+                        <p>Cultivate leads and nurture customer relationships with personalized and effective email campaigns.</p>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-icon">🎯</span>
+                        <h3>Paid Advertising (PPC)</h3>
+                        <p>Maximize your ROI with targeted pay-per-click campaigns across Google, social media, and other platforms.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">About Aivertise</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Our Vision for Your Success</h3>
+                        <p>Aivertise is a leading marketing agency dedicated to empowering businesses with innovative, data-driven strategies. Founded by Tauras, our mission is to cut through the noise and deliver measurable results that drive real growth for our clients.</p>
+                        <p>We believe that effective marketing is not just about visibility, but about genuine connection and conversion. Our team of experts combines cutting-edge AI insights with creative human ingenuity to develop bespoke marketing plans tailored to your unique goals.</p>
+                        <p>Partner with Aivertise and experience a transformative approach to your brand's digital presence.</p>
+                    </div>
+                    <div class="about-image">
+                        <!-- Placeholder for an image related to marketing/AI/data -->
+                        <img src="https://via.placeholder.com/500x350?text=Aivertise+Team" alt="Aivertise team working">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">Let's Connect</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Get in Touch with Tauras</h3>
+                        <p>Ready to discuss your marketing needs? We'd love to hear from you!</p>
+                        <p><strong>Email:</strong> <a href="mailto:tauras.tob2@gmail.com">tauras.tob2@gmail.com</a></p>
+                        <p><strong>Contact Person:</strong> Tauras, Owner & CEO</p>
+                        <p>Feel free to reach out directly via email, or use the form below to send us a message.</p>
+                    </div>
+                    <div class="contact-form-wrapper">
+                        <h3>Send Us a Message</h3>
+                        <form id="contactForm" class="contact-form">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+
+                            <button type="submit" class="btn">Send Message</button>
+                            <div id="form-message"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Aivertise. All rights reserved.</p>
+            <p>Designed and Developed by <a href="https://github.com/ttobulevicius" target="_blank" rel="noopener noreferrer">ttobulevicius</a></p>
+            <p>Special thanks to Tauras for the opportunity.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Contact form submission handling
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const formMessage = document.getElementById('form-message');
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            formMessage.style.display = 'block'; // Show message area initially
+
+            // Basic client-side validation
+            if (!name || !email || !message) {
+                formMessage.className = 'error';
+                formMessage.textContent = 'Please fill in all fields.';
+                return; // Stop further execution
+            }
+
+            if (!/\S+@\S+\.\S+/.test(email)) { // Basic email format validation
+                formMessage.className = 'error';
+                formMessage.textContent = 'Please enter a valid email address.';
+                return;
+            }
+
+            // Simulate form submission
+            setTimeout(() => {
+                // In a real application, you would send this data to a server
+                // e.g., using fetch API:
+                /*
+                fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, email, message }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        formMessage.className = 'success';
+                        formMessage.textContent = 'Thank you for your message! We will get back to you soon.';
+                        this.reset();
+                    } else {
+                        formMessage.className = 'error';
+                        formMessage.textContent = data.message || 'An error occurred. Please try again.';
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    formMessage.className = 'error';
+                    formMessage.textContent = 'Failed to send message. Please try again later.';
+                });
+                */
+
+                // For this example, we'll just show a success message
+                formMessage.className = 'success';
+                formMessage.textContent = 'Thank you for your message! We will get back to you soon.';
+                this.reset(); // Clear the form
+            }, 500); // Simulate network delay
+        });
+    </script>
+</body>
+</html>

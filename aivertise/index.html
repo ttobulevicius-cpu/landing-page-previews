@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aivertise - Your Vision, Amplified</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset & Global Styles */
+        :root {
+            --primary-gradient: linear-gradient(to right, #6A11CB, #2575FC); /* Deep purple to bright blue */
+            --primary-color-start: #6A11CB; /* Dark purple */
+            --primary-color-end: #2575FC;   /* Bright blue */
+            --dark-bg: #1A1A2E; /* Very dark blue/purple */
+            --dark-text: #E0E0E0; /* Off-white for readability on dark backgrounds */
+            --light-text: #FFFFFF;
+            --accent-bg: #2B2B45; /* Slightly lighter dark background for cards/sections */
+            --button-text: #FFFFFF;
+            --border-color: #3C3C5A; /* Subtle border for elements */
+            --form-bg: #2B2B45;
+            --form-border: #4A4A6B;
+            --placeholder-color: #9C9CBF;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+            --max-width: 1200px;
+            --padding-section: 80px 20px; /* Default section padding */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--dark-bg);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            color: var(--primary-color-end);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--light-text);
+            margin-bottom: 20px;
+        }
+
+        h1 { font-size: 3.5em; }
+        h2 { font-size: 2.5em; }
+        h3 { font-size: 1.8em; }
+
+        p {
+            margin-bottom: 1em;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: var(--padding-section);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 50px;
+            font-family: var(--font-heading);
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background-image: var(--primary-gradient);
+            color: var(--button-text);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            -webkit-appearance: none; /* For form buttons on iOS */
+            -moz-appearance: none; /* For form buttons on Firefox */
+            appearance: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+            filter: brightness(1.1);
+        }
+
+        /* Header/Navigation */
+        .header {
+            background-color: rgba(26, 26, 46, 0.9); /* Semi-transparent dark background */
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--light-text);
+        }
+
+        .nav-links a {
+            color: var(--dark-text);
+            margin-left: 30px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color-end);
+            text-decoration: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: var(--primary-gradient);
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--light-text);
+            min-height: 80vh; /* Responsive height */
+            padding: var(--padding-section);
+            position: relative;
+            overflow: hidden;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 70%);
+            animation: pulse 15s infinite ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+            100% { transform: scale(0.8); opacity: 0.5; }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4.5em;
+            margin-bottom: 25px;
+            line-height: 1.1;
+            /* Gradient text effect */
+            background: -webkit-linear-gradient(left, var(--light-text), var(--primary-color-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+        }
+
+        /* Services Section */
+        .services {
+            background-color: var(--dark-bg);
+            padding: var(--padding-section);
+            position: relative;
+            z-index: 1;
+        }
+
+        .services h2 {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background-color: var(--accent-bg);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary-color-end);
+        }
+
+        .service-card h3 {
+            color: var(--primary-color-end);
+            font-size: 1.6em;
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: var(--dark-text);
+            font-size: 0.95em;
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--accent-bg);
+            padding: var(--padding-section);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .about h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px; /* Minimum width before wrapping */
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px; /* Minimum width before wrapping */
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--dark-bg);
+            padding: var(--padding-section);
+        }
+
+        .contact h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .contact-content {
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .contact-info, .contact-form-wrapper {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--accent-bg);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-info h3, .contact-form-wrapper h3 {
+            color: var(--primary-color-end);
+            margin-bottom: 25px;
+            font-size: 1.8em;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-info a {
+            color: var(--dark-text);
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--primary-color-end);
+            text-decoration: underline;
+        }
+        
+        /* Form styling */
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--light-text);
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 25px;
+            border: 1px solid var(--form-border);
+            border-radius: 10px;
+            background-color: var(--form-bg);
+            color: var(--light-text);
+            font-family: var(--font-body);
+            font-size: 1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            -webkit-appearance: none; /* For consistent styling across browsers */
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        .contact-form input[type="text"]:focus,
+        .contact-form input[type="email"]:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-color-end);
+            box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.3); /* Subtle focus glow */
+        }
+
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical; /* Allow vertical resizing only */
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: var(--placeholder-color);
+        }
+
+        /* Creator info */
+        .creator-info {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--form-border);
+            text-align: center;
+            font-size: 0.9em;
+            color: var(--dark-text);
+        }
+
+        .creator-info a {
+            color: var(--primary-color-end);
+            font-weight: 600;
+        }
+
+        .creator-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--accent-bg);
+            color: var(--dark-text);
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9em;
+        }
+
+        .footer .container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .footer p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Helper for icons (simple text icons) */
+        .icon {
+            font-size: 1.2em;
+            margin-right: 5px;
+            color: var(--primary-color-end);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.5em;
+            }
+            .hero p {
+                font-size: 1.3em;
+            }
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust min card width */
+            }
+            .about-content, .contact-content {
+                flex-direction: column; /* Stack items vertically */
+                align-items: center;
+            }
+            .about-text, .about-image, .contact-info, .contact-form-wrapper {
+                min-width: unset; /* Remove min-width to allow full width */
+                width: 100%;
+                max-width: 600px; /* Constrain max width for better readability */
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --padding-section: 60px 15px; /* Reduce section padding */
+            }
+            .header .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .nav-links {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap; /* Allow nav items to wrap */
+            }
+            .nav-links a {
+                margin: 0 15px 10px; /* Adjust spacing for wrapped nav items */
+            }
+            .hero h1 {
+                font-size: 2.8em;
+            }
+            .hero p {
+                font-size: 1.1em;
+            }
+            h2 {
+                font-size: 2em;
+            }
+            h3 {
+                font-size: 1.5em;
+            }
+            .btn {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --padding-section: 40px 10px; /* Further reduce section padding */
+            }
+            .hero h1 {
+                font-size: 2.2em;
+            }
+            .hero p {
+                font-size: 0.95em;
+            }
+            .nav-links a {
+                margin: 0 10px 10px;
+                font-size: 0.9em;
+            }
+            .service-card {
+                padding: 30px 20px;
+            }
+            .contact-info, .contact-form-wrapper {
+                padding: 30px 20px;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="#hero" class="logo">Aivertise</a>
+            <nav class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1>Aivertise</h1>
+            <p>Your Vision, Amplified. Strategic Marketing Excellence.</p>
+            <a href="#services" class="btn">Discover Our Solutions</a>
+        </div>
+    </section>
+
+    <section id="services" class="services section-padding">
+        <div class="container">
+            <h2 class="text-center">Our Expertise in Digital Marketing</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Digital Strategy</h3>
+                    <p>Crafting bespoke digital roadmaps that align with your business goals and maximize online presence.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Search Engine Optimization (SEO)</h3>
+                    <p>Enhancing your visibility on search engines to drive organic traffic and higher rankings.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Social Media Management</h3>
+                    <p>Building engaging communities and driving brand awareness across all major social platforms.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Content Marketing</h3>
+                    <p>Creating compelling, valuable content that attracts, engages, and converts your target audience.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Paid Advertising (PPC)</h3>
+                    <p>Delivering targeted campaigns on Google, social media, and more to generate immediate results.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Website Design & Development</h3>
+                    <p>Building modern, responsive, and high-performing websites that captivate and convert visitors.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about section-padding">
+        <div class="container">
+            <h2 class="text-center">About Aivertise</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>At Aivertise, we believe in the power of innovation and precision to transform businesses. Led by our visionary <strong>Owner and CEO, Tauras</strong>, we are a cutting-edge marketing agency dedicated to delivering exceptional results.</p>
+                    <p>Our approach combines deep industry insights with state-of-the-art strategies to amplify your brand's message and connect with your audience effectively. We specialize in creating dynamic, data-driven marketing solutions that not only meet but exceed your objectives.</p>
+                    <p>Partner with Aivertise to unlock your full potential and navigate the ever-evolving digital landscape with confidence. We are committed to transparency, measurable outcomes, and building lasting relationships with our clients.</p>
+                </div>
+                <div class="about-image">
+                    <!-- Placeholder image for a modern, professional look -->
+                    <img src="https://via.placeholder.com/600x400/2B2B45/9C9CBF?text=Aivertise+Team+Photo" alt="Aivertise Team collaborating on a project">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact section-padding">
+        <div class="container">
+            <h2 class="text-center">Let's Connect</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Reach Out Directly</h3>
+                    <p><span class="icon">📧</span> Email: <a href="mailto:tauras.tob2@gmail.com">tauras.tob2@gmail.com</a></p>
+                    <p><span class="icon">🌐</span> Website: <a href="https://www.aivertises.com" target="_blank" rel="noopener noreferrer">www.aivertises.com</a></p>
+                    <p><span class="icon">👤</span> Contact Person: Tauras (Owner & CEO)</p>
+                    <div class="creator-info">
+                        <p>This landing page was crafted by <a href="mailto:ttobulevicius@gmail.com">ttobulevicius@gmail.com</a>.</p>
+                        <p>Interested in a similar premium web presence? <a href="mailto:ttobulevicius@gmail.com">Let's build something amazing together!</a></p>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper">
+                    <h3>Send Us a Message</h3>
+                    <form class="contact-form" id="contactForm">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your project or inquiry..." required></textarea>
+
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2023 Aivertise. All rights reserved.</p>
+            <p>Powered by Innovation.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            
+            // In a real-world scenario, you would use fetch() or XMLHttpRequest
+            // to send this data to a server. For this example, we'll just show an alert.
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            if (name && email && message) {
+                alert(`Thank you, ${name}! Your message has been received. We will get back to you at ${email} shortly.`);
+                
+                // Optional: Clear the form fields after successful submission
+                this.reset();
+            } else {
+                alert('Please fill in all fields before submitting.');
+            }
+        });
+
+        // Simple smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

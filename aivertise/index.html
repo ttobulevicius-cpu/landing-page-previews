@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aivertise - AI-Powered Marketing Solutions</title>
+    <style>
+        :root {
+            --primary-gradient-start: #6F42C1; /* Deep Purple */
+            --primary-gradient-end: #A859E1;   /* Lighter Purple/Magenta */
+            --accent-blue: #00BFFF;             /* Deep Sky Blue */
+            --text-dark: #2C3E50;               /* Dark Blue-Grey */
+            --text-light: #ECF0F1;              /* Light Grey */
+            --background-light: #FFFFFF;
+            --background-dark: #1A222C;         /* Very Dark Blue-Grey */
+            --background-grey: #F8F8F8;
+            --border-light: #DCDCDC;
+            --button-hover-darken: #5a33a0;
+            --button-text-light: #FFFFFF;
+
+            --font-family-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            --font-size-base: 16px;
+            --line-height-base: 1.6;
+            --spacing-unit: 1rem;
+            --border-radius: 8px;
+            --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Basic Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family-primary);
+            line-height: var(--line-height-base);
+            color: var(--text-dark);
+            background-color: var(--background-light);
+            font-size: var(--font-size-base);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            color: var(--primary-gradient-start);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-dark);
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 1.75rem; }
+        p { margin-bottom: var(--spacing-unit); }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 calc(var(--spacing-unit) * 1.5);
+        }
+
+        .text-center { text-align: center; }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            color: var(--button-text-light);
+            background: linear-gradient(45deg, var(--primary-gradient-start), var(--primary-gradient-end));
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, var(--primary-gradient-end), var(--primary-gradient-start));
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-gradient-start);
+            border: 2px solid var(--primary-gradient-start);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-gradient-start);
+            color: var(--button-text-light);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--background-light);
+            padding: calc(var(--spacing-unit) * 1.5) 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-gradient-start);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: calc(var(--spacing-unit) * 2);
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--primary-gradient-start);
+            text-decoration: none;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background: var(--primary-gradient-start);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Sections */
+        section {
+            padding: calc(var(--spacing-unit) * 6) 0;
+            position: relative;
+        }
+
+        section:nth-of-type(even) {
+            background-color: var(--background-grey);
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(135deg, var(--primary-gradient-start) 0%, var(--primary-gradient-end) 100%);
+            color: var(--text-light);
+            text-align: center;
+            padding: calc(var(--spacing-unit) * 8) 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+        }
+
+        #hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: var(--spacing-unit);
+            font-weight: 800;
+            color: var(--text-light);
+            line-height: 1.1;
+        }
+
+        #hero p {
+            font-size: 1.5rem;
+            margin-bottom: calc(var(--spacing-unit) * 3);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        #hero .btn {
+            background: var(--accent-blue);
+            color: var(--background-light);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        #hero .btn:hover {
+            background: #0099CC;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Services Section */
+        #services h2, #about h2, #contact h2 {
+            text-align: center;
+            margin-bottom: calc(var(--spacing-unit) * 4);
+            font-size: 3rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: calc(var(--spacing-unit) * 2);
+            margin-top: calc(var(--spacing-unit) * 3);
+        }
+
+        .service-card {
+            background-color: var(--background-light);
+            padding: calc(var(--spacing-unit) * 2.5);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .service-card .icon {
+            font-size: 3rem;
+            color: var(--primary-gradient-start);
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* About Section */
+        #about {
+            text-align: center;
+            background-color: var(--background-light);
+        }
+
+        #about p {
+            max-width: 800px;
+            margin: 0 auto calc(var(--spacing-unit) * 3);
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: var(--background-dark);
+            color: var(--text-light);
+        }
+
+        #contact h2 {
+            color: var(--text-light);
+        }
+
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: var(--background-dark); /* Keep background for form consistency */
+            padding: calc(var(--spacing-unit) * 3);
+            border-radius: var(--border-radius);
+            /* box-shadow: var(--shadow-medium); /* Removed for dark background */
+        }
+
+        .form-group {
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: calc(var(--spacing-unit) * 0.5);
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            width: 100%;
+            padding: calc(var(--spacing-unit) * 1.2);
+            border: 1px solid var(--border-light);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            background-color: #3B4A5C; /* Darker input background */
+            color: var(--text-light);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent-blue);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 191, 255, 0.2); /* Soft focus glow */
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .contact-form .btn {
+            width: 100%;
+            padding: calc(var(--spacing-unit) * 1.2) 0;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            padding: calc(var(--spacing-unit) * 3) 0;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-unit);
+        }
+
+        .footer-content p {
+            margin-bottom: 0;
+        }
+
+        .footer-content a {
+            color: var(--accent-blue);
+        }
+
+        .footer-content a:hover {
+            color: var(--primary-gradient-end);
+            text-decoration: none;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 1024px) {
+            #hero h1 { font-size: 3.5rem; }
+            #hero p { font-size: 1.3rem; }
+            h2 { font-size: 2rem; }
+            .service-card h3 { font-size: 1.3rem; }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 calc(var(--spacing-unit));
+            }
+
+            header {
+                padding: var(--spacing-unit) 0;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: var(--spacing-unit);
+            }
+
+            nav ul {
+                gap: var(--spacing-unit);
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            #hero {
+                min-height: 70vh;
+                padding: calc(var(--spacing-unit) * 6) 0;
+            }
+
+            #hero h1 {
+                font-size: 2.8rem;
+            }
+
+            #hero p {
+                font-size: 1.1rem;
+            }
+
+            .btn {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+
+            h2 {
+                font-size: 2.2rem;
+                margin-bottom: calc(var(--spacing-unit) * 3);
+            }
+            
+            section {
+                padding: calc(var(--spacing-unit) * 4) 0;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: calc(var(--spacing-unit) * 2);
+            }
+
+            #about p {
+                font-size: 1rem;
+                margin-bottom: calc(var(--spacing-unit) * 2);
+            }
+
+            .contact-form {
+                padding: calc(var(--spacing-unit) * 2);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.8rem;
+            }
+            #hero h1 {
+                font-size: 2.2rem;
+            }
+            #hero p {
+                font-size: 1rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            .btn {
+                width: 100%;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">Aivertise</div>
+            <nav>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="text-center">
+            <div class="container">
+                <h1>Aivertise</h1>
+                <p>Unlock Your Brand's Full Potential with AI-Powered Marketing.</p>
+                <a href="#contact" class="btn">Get a Free Consultation</a>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services">
+            <div class="container">
+                <h2>Our Expertise</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <span class="icon">&#9881;</span> <!-- Gear icon -->
+                        <h3>AI-Driven Strategy</h3>
+                        <p>Leveraging cutting-edge AI to craft data-informed marketing strategies tailored for maximum impact and ROI.</p>
+                    </div>
+                    <div class="service-card">
+                        <span class="icon">&#128269;</span> <!-- Magnifying Glass icon -->
+                        <h3>Targeted Ad Campaigns</h3>
+                        <p>Precision-targeted advertising across all platforms, ensuring your message reaches the right audience at the right time.</p>
+                    </div>
+                    <div class="service-card">
+                        <span class="icon">&#128200;</span> <!-- Chart icon -->
+                        <h3>SEO & Analytics</h3>
+                        <p>Optimizing your online presence for search engines and providing deep analytics to track and improve performance.</p>
+                    </div>
+                    <div class="service-card">
+                        <span class="icon">&#128172;</span> <!-- Speech Bubble icon -->
+                        <h3>Content Creation</h3>
+                        <p>Engaging and SEO-friendly content powered by AI insights, designed to captivate your audience and drive conversions.</p>
+                    </div>
+                    <div class="service-card">
+                        <span class="icon">&#128187;</span> <!-- Computer icon -->
+                        <h3>Social Media Management</h3>
+                        <p>Building and managing strong social media presence with AI-enhanced scheduling, content, and engagement strategies.</p>
+                    </div>
+                    <div class="service-card">
+                        <span class="icon">&#128640;</span> <!-- Rocket icon -->
+                        <h3>Performance Marketing</h3>
+                        <p>Results-driven campaigns focused on measurable outcomes, from lead generation to customer acquisition.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="container">
+                <h2>About Aivertise</h2>
+                <p>Aivertise is a cutting-edge marketing agency led by CEO Tauras, dedicated to leveraging the power of Artificial Intelligence to deliver unparalleled results for our clients. We blend innovative technology with deep marketing expertise to craft strategies that drive growth, enhance brand visibility, and connect businesses with their ideal audience. Our mission is to transform traditional marketing into a smart, efficient, and highly effective growth engine for companies of all sizes.</p>
+                <a href="#services" class="btn btn-outline">See Our Services</a>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <h2>Get in Touch</h2>
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                    <p id="formStatus" style="margin-top: var(--spacing-unit); text-align: center; color: var(--text-light);"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2024 Aivertise. All rights reserved.</p>
+            <p>Contact: <a href="mailto:tauras.tob2@gmail.com">tauras.tob2@gmail.com</a></p>
+            <p>Created by <a href="https://github.com/ttobulevicius" target="_blank" rel="noopener noreferrer">ttobulevicius</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const formStatus = document.getElementById('formStatus');
+            formStatus.textContent = 'Sending your message...';
+            formStatus.style.color = '#FFD700'; // Gold color for pending
+
+            // Simulate form submission (in a real scenario, this would be an AJAX call)
+            setTimeout(() => {
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+
+                if (name && email && subject && message) {
+                    formStatus.textContent = 'Thank you for your message, ' + name + '! We will get back to you shortly.';
+                    formStatus.style.color = '#32CD32'; // LimeGreen for success
+                    this.reset(); // Clear the form
+                } else {
+                    formStatus.textContent = 'Please fill in all fields.';
+                    formStatus.style.color = '#DC143C'; // Crimson for error
+                }
+            }, 1500); // Simulate network delay
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

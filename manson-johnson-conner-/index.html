@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manson Johnson Conner | Premier Law Firm</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-red: #A32A29;
+            --dark-grey: #222222;
+            --medium-grey: #666666;
+            --light-bg: #F5F5F5;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--dark-grey);
+            line-height: 1.6;
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-red);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #801f1e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(163, 42, 41, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--primary-red);
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-grey);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-red);
+            margin: 15px auto 0;
+        }
+
+        .section-title p {
+            color: var(--medium-grey);
+            font-size: 1.1rem;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 90px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-grey);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--primary-red);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .nav-link {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--dark-grey);
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-red);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--dark-grey);
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 90px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: #f0f0f0;
+        }
+
+        /* Practice Areas */
+        .services {
+            background-color: var(--light-bg);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 40px 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-bottom: 3px solid var(--primary-red);
+        }
+
+        .icon-box {
+            font-size: 2.5rem;
+            color: var(--primary-red);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-grey);
+        }
+
+        .service-card p {
+            color: var(--medium-grey);
+            font-size: 0.95rem;
+        }
+
+        /* Notable Cases / About */
+        .about {
+            background-color: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            box-shadow: 20px 20px 0 var(--light-bg);
+        }
+
+        .about-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-red);
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            color: var(--medium-grey);
+        }
+
+        .stat-row {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+            padding-top: 30px;
+        }
+
+        .stat h4 {
+            font-size: 2rem;
+            color: var(--dark-grey);
+        }
+
+        .stat span {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: var(--medium-grey);
+            letter-spacing: 1px;
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--dark-grey);
+            color: var(--white);
+        }
+
+        .contact .section-title h2 {
+            color: var(--white);
+        }
+
+        .contact .section-title p {
+            color: #a0a0a0;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 50px;
+        }
+
+        .contact-info h3 {
+            color: var(--primary-red);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .info-item {
+            margin-bottom: 30px;
+        }
+
+        .info-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #f0f0f0;
+        }
+
+        .info-item p, .info-item a {
+            color: #a0a0a0;
+            font-size: 1rem;
+        }
+
+        .info-item a:hover {
+            color: var(--primary-red);
+        }
+
+        .contact-form form {
+            display: grid;
+            gap: 20px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background-color: rgba(255,255,255,0.05);
+            border: 1px solid #444;
+            color: var(--white);
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111;
+            color: #666;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #888;
+        }
+        
+        footer a:hover {
+            color: var(--primary-red);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                height: 70px;
+            }
+            
+            .hamburger {
+                display: block;
+                z-index: 1001;
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 100%;
+                height: calc(100vh - 70px);
+                padding-top: 50px;
+                transition: 0.3s;
+                border-top: 1px solid #eee;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hero {
+                margin-top: 70px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-padding {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    MANSON<span>JOHNSON</span>CONNER
+                </a>
+                
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About Firm</a></li>
+                    <li><a href="#practices" class="nav-link">Practice Areas</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <li><a href="#contact" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.8rem;">Free Consultation</a></li>
+                </ul>
+
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Relentless Advocacy.<br>Proven Results.</h1>
+            <p>Manson Johnson Conner is a premier law firm dedicated to protecting your rights and securing the justice you deserve in high-stakes litigation and government matters.</p>
+            <a href="#contact" class="btn btn-primary">Evaluate Your Case</a>
+            <a href="#practices" class="btn btn-outline" style="margin-left: 15px;">Our Services</a>
+        </div>
+    </section>
+
+    <!-- About / Notable Cases Section -->
+    <section id="about" class="section-padding about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <!-- Placeholder legal image -->
+                    <img src="https://images.unsplash.com/photo-1555374018-13a8994ab246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Manson Johnson Conner Office">
+                </div>
+                <div class="about-content">
+                    <div class="section-title" style="text-align: left; margin-bottom: 30px;">
+                        <h2>Our Legacy</h2>
+                    </div>
+                    <h3>Decades of Excellence in Legal Defense</h3>
+                    <p>Manson Johnson Conner has established a reputation for taking on the most challenging cases. From complex civil litigation to government agency defense, our team brings unparalleled expertise to every client we serve.</p>
+                    <p>We believe that every client deserves a rigorous defense and a team that is not afraid to stand up against powerful interests. Our track record speaks for itself.</p>
+                    
+                    <div class="stat-row">
+                        <div class="stat">
+                            <h4>25+</h4>
+                            <span>Years Experience</span>
+                        </div>
+                        <div class="stat">
+                            <h4>100s</h4>
+                            <span>Cases Won</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Practice Areas -->
+    <section id="practices" class="section-padding services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Practice Areas</h2>
+                <p>Comprehensive legal solutions tailored to your specific needs.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="icon-box">&#9878;</div>
+                    <h3>Government & Civil Liability</h3>
+                    <p>Expert representation in matters involving government agencies, civil rights violations, and public sector litigation.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon-box">&#9881;</div>
+                    <h3>Personal Injury</h3>
+                    <p>Fighting for maximum compensation for victims of negligence, accidents, and wrongful death.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon-box">&#9745;</div>
+                    <h3>Corporate Litigation</h3>
+                    <p>Strategic legal counsel for businesses facing complex disputes, breach of contract, and liability issues.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Reach out today for a confidential consultation regarding your legal matter.</p>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Manson Johnson Conner</h3>
+                    <p style="margin-bottom: 30px; color: #a0a0a0;">We are ready to listen to your story and provide the legal guidance you need.</p>
+                    
+                    <div class="info-item">
+                        <h4>Email Us</h4>
+                        <a href="mailto:mansonjohnsonlaw@gmail.com">mansonjohnsonlaw@gmail.com</a>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h4>Office Hours</h4>
+                        <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                        <p>Saturday - Sunday: Closed</p>
+                    </div>
+
+                    <div class="info-item">
+                        <h4>Website</h4>
+                        <a href="https://mansonjohnsonlaw.com/" target="_blank">www.mansonjohnsonlaw.com</a>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form onsubmit="event.preventDefault(); alert('Thank you. Your message has been simulated sent.');">
+                        <div class="form-group">
+                            <input type="text" placeholder="Full Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Phone Number">
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="5" placeholder="Briefly describe your legal matter..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; border: none;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Manson Johnson Conner. All Rights Reserved.</p>
+            <p style="margin-top: 10px; font-size: 0.8rem; color: #444;">Attorney Advertising. Past results do not guarantee future outcomes.</p>
+            <p style="margin-top: 20px; font-size: 0.75rem;">Created by: ttobulevicius</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            // Toggle Mobile Menu
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            // Close Mobile Menu when link clicked
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+
+            // Smooth Scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerOffset = 90;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            });
+
+            // Active Link Highlighter on Scroll
+            window.addEventListener('scroll', () => {
+                let current = '';
+                const sections = document.querySelectorAll('section');
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(li => {
+                    li.classList.remove('active');
+                    if (li.getAttribute('href').includes(current)) {
+                        li.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

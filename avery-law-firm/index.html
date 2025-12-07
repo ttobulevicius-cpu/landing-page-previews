@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avery Law Firm - Expert Legal Services</title>
+    <style>
+        /* CSS Variables for Brand Colors */
+        :root {
+            --bg-dark: #1A1A1A;
+            --primary-gold: #D1A147;
+            --secondary-gold: #E4B960;
+            --text-white: #FFFFFF;
+            --heading-teal: #4F7F77;
+            --bg-secondary-dark: #2B3F41;
+            --text-dark: #333333;
+            --font-serif: Georgia, "Times New Roman", serif;
+            --font-sans-serif: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        /* General Resets and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans-serif);
+            line-height: 1.6;
+            color: var(--text-white);
+            background-color: var(--bg-dark);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            color: var(--primary-gold);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--secondary-gold);
+            text-decoration: underline;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-serif);
+            margin-bottom: 0.5em;
+            color: var(--text-white); /* Default, overridden in sections */
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 3em; }
+        h2 { font-size: 2.5em; color: var(--heading-teal); }
+        h3 { font-size: 1.8em; }
+        p { margin-bottom: 1em; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: var(--primary-gold);
+            color: var(--text-dark);
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: var(--secondary-gold);
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            padding: 20px 0;
+            border-bottom: 1px solid var(--bg-secondary-dark);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            font-family: var(--font-serif);
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--primary-gold);
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        header nav ul li {
+            margin-left: 30px;
+        }
+
+        header nav ul li a {
+            color: var(--text-white);
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            color: var(--primary-gold);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-white);
+            margin: 4px 0;
+            transition: 0.4s;
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.7)), url('https://images.unsplash.com/photo-1510525946328-9104044b7f14?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            /* Placeholder image from Unsplash (legal/cityscape), replace with actual branding image if available */
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+        
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+            z-index: 1;
+        }
+
+        #hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        #hero h1 {
+            font-size: 4.5em;
+            color: var(--text-white);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        #hero p {
+            font-size: 1.5em;
+            color: var(--secondary-gold);
+            margin-bottom: 40px;
+            font-family: var(--font-serif);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        section:nth-of-type(even) {
+            background-color: var(--bg-secondary-dark);
+        }
+
+        section h2 {
+            margin-bottom: 40px;
+            font-size: 3em;
+            font-weight: bold;
+        }
+
+        /* Services Section */
+        #services .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        #services .service-item {
+            background-color: var(--bg-secondary-dark);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            text-align: left;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            border-bottom: 5px solid var(--primary-gold);
+        }
+
+        #services .service-item:hover {
+            transform: translateY(-10px);
+            background-color: rgba(43, 63, 65, 0.9);
+        }
+
+        #services .service-item h3 {
+            color: var(--primary-gold);
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        #services .service-item p {
+            color: var(--text-white);
+            font-size: 1.1em;
+        }
+
+        /* About Section */
+        #about {
+            text-align: left;
+        }
+
+        #about .container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #about .about-content {
+            flex: 2;
+            padding-right: 40px;
+        }
+        
+        #about .about-content h2 {
+            text-align: left;
+        }
+
+        #about .about-image {
+            flex: 1;
+            min-width: 300px;
+            height: 350px;
+            background-color: var(--bg-dark); /* Placeholder for image */
+            border: 5px solid var(--primary-gold);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-gold);
+            font-size: 1.5em;
+            font-family: var(--font-serif);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            background-image: url('https://images.unsplash.com/photo-1589829546050-02a832a81870?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Unsplash image for legal context */
+            background-size: cover;
+            background-position: center;
+        }
+        #about .about-image span {
+            display: none; /* Hide placeholder text if image loads */
+        }
+        
+        #about p {
+            font-size: 1.1em;
+            margin-bottom: 1.5em;
+            color: var(--text-white);
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: var(--bg-dark);
+        }
+
+        #contact h2 {
+            color: var(--heading-teal);
+            margin-bottom: 30px;
+        }
+
+        #contact .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: var(--bg-secondary-dark);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            border-bottom: 5px solid var(--primary-gold);
+        }
+
+        #contact .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        #contact .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--text-white);
+        }
+
+        #contact .form-group input[type="text"],
+        #contact .form-group input[type="email"],
+        #contact .form-group input[type="tel"],
+        #contact .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--primary-gold);
+            border-radius: 5px;
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        #contact .form-group input:focus,
+        #contact .form-group textarea:focus {
+            border-color: var(--secondary-gold);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(228, 185, 96, 0.5);
+        }
+
+        #contact .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        #contact .form-submit {
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--bg-secondary-dark);
+            font-size: 0.9em;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        footer .logo {
+            font-family: var(--font-serif);
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--primary-gold);
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            margin-bottom: 5px;
+            color: var(--text-white);
+        }
+
+        footer a {
+            color: var(--primary-gold);
+        }
+
+        footer a:hover {
+            color: var(--secondary-gold);
+        }
+
+        /* Mobile Responsiveness */
+        @media screen and (max-width: 992px) {
+            #hero h1 {
+                font-size: 3.5em;
+            }
+            #hero p {
+                font-size: 1.3em;
+            }
+            section h2 {
+                font-size: 2.5em;
+            }
+            #about .container {
+                flex-direction: column;
+            }
+            #about .about-content {
+                padding-right: 0;
+                margin-bottom: 40px;
+                text-align: center;
+            }
+            #about .about-content h2 {
+                text-align: center;
+            }
+            #about .about-image {
+                width: 100%;
+                max-width: 500px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            header .logo {
+                font-size: 1.8em;
+            }
+
+            header nav {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 80px; /* Adjust based on header height */
+                left: 0;
+                background-color: var(--bg-dark);
+                border-top: 1px solid var(--bg-secondary-dark);
+                padding-bottom: 20px;
+            }
+
+            header nav.active {
+                display: flex;
+            }
+
+            header nav ul {
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+
+            header nav ul li {
+                margin: 15px 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            #hero h1 {
+                font-size: 2.8em;
+            }
+            #hero p {
+                font-size: 1.1em;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            section h2 {
+                font-size: 2em;
+            }
+            #services .service-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            #hero h1 {
+                font-size: 2em;
+            }
+            #hero p {
+                font-size: 0.9em;
+            }
+            .button {
+                padding: 12px 25px;
+                font-size: 0.9em;
+            }
+            section h2 {
+                font-size: 1.8em;
+            }
+            #services .service-item h3 {
+                font-size: 1.5em;
+            }
+            #services .service-item p {
+                font-size: 1em;
+            }
+            #about .about-content h2 {
+                font-size: 1.8em;
+            }
+            #about p {
+                font-size: 1em;
+            }
+            #contact .contact-form {
+                padding: 25px;
+            }
+            footer .logo {
+                font-size: 1.5em;
+            }
+            footer p {
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Avery Law Firm</div>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger" id="hamburgerMenu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <h1>Your Trusted Legal Partner in Personal Injury</h1>
+                <p>Aggressive Representation, Compassionate Guidance for Your Recovery.</p>
+                <a href="#contact" class="button">Get a Free Consultation</a>
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="container">
+                <h2>Our Practice Areas</h2>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <h3>Car Accidents</h3>
+                        <p>Navigating the complexities of car accident claims to ensure you receive fair compensation for your injuries and damages.</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Truck Accidents</h3>
+                        <p>Holding negligent trucking companies and drivers accountable for catastrophic injuries caused by commercial vehicle collisions.</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Motorcycle Accidents</h3>
+                        <p>Protecting the rights of motorcyclists and fighting against common biases to secure full and just settlements.</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Slip & Fall Accidents</h3>
+                        <p>Representing victims injured due to hazardous conditions on someone else's property under premises liability laws.</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Wrongful Death</h3>
+                        <p>Providing compassionate legal support to families who have lost loved ones due to negligence, seeking justice and compensation.</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Personal Injury</h3>
+                        <p>Comprehensive legal services for all types of personal injury cases, ensuring your rights are protected and future secured.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <div class="about-content">
+                    <h2>About Avery Law Firm</h2>
+                    <p>At Avery Law Firm, we are dedicated to providing unparalleled legal representation to individuals throughout Denver who have suffered personal injuries due to the negligence of others. With a steadfast commitment to justice, our experienced legal team tirelessly advocates for our clients, ensuring their voices are heard and their rights are protected.</p>
+                    <p>Our firm is built on a foundation of integrity, compassion, and aggressive legal strategy. We understand the physical, emotional, and financial toll an injury can take, and we strive to alleviate that burden by handling every aspect of your case with meticulous care and professionalism. From initial consultation to courtroom litigation, we stand by your side, fighting for the maximum compensation you deserve.</p>
+                    <p>Choose Avery Law Firm for a legal partner who genuinely cares about your recovery and future.</p>
+                </div>
+                <div class="about-image">
+                    <span>Legal Excellence</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2>Contact Us for a Free Consultation</h2>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
+                        <div class="form-submit">
+                            <button type="submit" class="button">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="logo">Avery Law Firm</div>
+            <p>Expert Legal Services for Personal Injury Cases.</p>
+            <p>Email: <a href="mailto:averylawfirm@gmail.com">averylawfirm@gmail.com</a></p>
+            <p>Website: <a href="https://denverinjurylaw.co/" target="_blank">denverinjurylaw.co</a></p>
+            <p>&copy; 2023 Avery Law Firm. All rights reserved.</p>
+            <p>Created by ttobulevicius</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for mobile navigation toggle
+        const hamburgerMenu = document.getElementById('hamburgerMenu');
+        const mainNav = document.getElementById('mainNav');
+
+        hamburgerMenu.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+
+        // Close nav when a link is clicked (for single-page navigation)
+        document.querySelectorAll('#mainNav ul li a').forEach(item => {
+            item.addEventListener('click', () => {
+                if (mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                }
+            });
+        });
+
+        // Basic form submission handler
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // In a real application, you would send this data to a server
+            // For now, let's just log it and show a success message
+            const formData = {
+                name: this.name.value,
+                email: this.email.value,
+                phone: this.phone.value,
+                message: this.message.value
+            };
+
+            console.log("Form Submitted:", formData);
+            alert("Thank you for your message! We will get back to you shortly.");
+
+            // Optionally clear the form
+            this.reset();
+        });
+    </script>
+</body>
+</html>

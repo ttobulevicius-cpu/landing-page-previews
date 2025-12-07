@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scharff Law Firm | Raleigh Criminal Defense</title>
+    
+    <!-- Fonts: Playfair Display for headers (Premium Serif), Montserrat for body (Clean Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* Premium Dark Theme Palette */
+            --bg-dark: #0f1115;
+            --bg-card: #161920;
+            --bg-accent: #1c2029;
+            --gold-primary: #C5A059;
+            --gold-light: #DFC27D;
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+            --overlay-dark: rgba(15, 17, 21, 0.85);
+        }
+
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-gray);
+            line-height: 1.7;
+            overflow-x: hidden;
+            font-weight: 300;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-white);
+            font-weight: 400;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.4s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Typography Utilities */
+        .text-gold { color: var(--gold-primary); }
+        .text-center { text-align: center; }
+        .uppercase { text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; font-weight: 600; }
+        
+        /* Premium Button */
+        .btn-luxury {
+            display: inline-block;
+            padding: 18px 40px;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            background: transparent;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .btn-luxury::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: var(--gold-primary);
+            transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            z-index: -1;
+        }
+
+        .btn-luxury:hover {
+            color: var(--bg-dark);
+        }
+
+        .btn-luxury:hover::before {
+            width: 100%;
+        }
+
+        .btn-luxury.filled {
+            background: var(--gold-primary);
+            color: var(--bg-dark);
+        }
+        
+        .btn-luxury.filled:hover {
+            background: var(--text-white);
+            border-color: var(--text-white);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 30px 0;
+            transition: 0.4s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(15, 17, 21, 0.95);
+            padding: 15px 0;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--text-white);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .logo span { color: var(--gold-primary); }
+
+        .nav-menu {
+            display: flex;
+            gap: 50px;
+        }
+
+        .nav-menu a {
+            color: var(--text-white);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold-primary);
+            transition: 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            color: var(--text-white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') no-repeat center center/cover;
+            background-attachment: fixed; /* Parallax effect */
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(15, 17, 21, 0.95) 0%, rgba(15, 17, 21, 0.7) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .hero-subtitle {
+            display: block;
+            color: var(--gold-primary);
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 4px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            animation: fadeInDown 1s ease forwards;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        .hero-divider {
+            width: 80px;
+            height: 2px;
+            background: var(--gold-primary);
+            margin: 0 auto 40px;
+            animation: expandWidth 1s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+        .hero-btns {
+            animation: fadeInUp 1s ease 0.8s forwards;
+            opacity: 0;
+        }
+
+        /* Intro Section (Split Layout) */
+        .intro-section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .intro-img-wrapper {
+            position: relative;
+        }
+
+        .intro-img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(1.1);
+            transition: 0.5s ease;
+        }
+        
+        .intro-img:hover {
+            filter: grayscale(0%);
+        }
+
+        .img-outline {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--gold-primary);
+            z-index: -1;
+        }
+
+        .intro-text h2 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+        }
+        
+        .intro-text h2 em {
+            font-style: italic;
+            color: var(--gold-primary);
+        }
+
+        .intro-text p {
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+        }
+
+        .quote-box {
+            border-left: 3px solid var(--gold-primary);
+            padding-left: 25px;
+            margin: 40px 0;
+            color: var(--text-white);
+            font-style: italic;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+        }
+
+        /* Services Grid (Minimalist) */
+        .services-section {
+            background-color: var(--bg-card);
+            padding: 120px 0;
+        }
+
+        .section-head {
+            text-align: center;
+            margin-bottom: 80px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-head h2 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-left: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .service-item {
+            padding: 60px 40px;
+            border-right: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: 0.4s ease;
+            position: relative;
+            background: transparent;
+        }
+
+        .service-item:hover {
+            background: var(--bg-accent);
+        }
+        
+        .service-item:hover .service-icon {
+            color: var(--gold-primary);
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--text-gray);
+            margin-bottom: 25px;
+            transition: 0.4s ease;
+        }
+
+        .service-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .service-item p {
+            font-size: 0.95rem;
+            color: #777;
+        }
+
+        .service-link {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold-primary);
+        }
+
+        /* Stats Strip */
+        .stats-section {
+            padding: 80px 0;
+            background: var(--gold-primary);
+            color: var(--bg-dark);
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            color: var(--bg-dark);
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .contact-info {
+            flex: 1;
+            background: var(--bg-dark);
+            padding: 100px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-form-wrapper {
+            flex: 1;
+            background: #1a1e26;
+            padding: 100px 80px;
+        }
+
+        .info-item {
+            margin-bottom: 40px;
+        }
+
+        .info-item h4 {
+            color: var(--gold-primary);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .info-item p, .info-item a {
+            font-size: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--text-white);
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-control {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 15px 0;
+            color: var(--text-white);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-bottom-color: var(--gold-primary);
+        }
+        
+        ::placeholder {
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background: #08090b;
+            padding: 60px 0 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--text-white);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-nav {
+            margin-bottom: 40px;
+        }
+
+        .footer-nav a {
+            color: var(--text-gray);
+            margin: 0 15px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-nav a:hover {
+            color: var(--gold-primary);
+        }
+
+        .copyright {
+            font-size: 0.75rem;
+            color: #444;
+            margin-top: 20px;
+        }
+        
+        .credits {
+            font-size: 0.75rem;
+            color: #333;
+            margin-top: 10px;
+        }
+        
+        .credits a {
+            color: #555;
+        }
+        
+        .credits a:hover {
+            color: var(--gold-primary);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        }
+        @keyframes fadeInDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+        }
+        @keyframes expandWidth {
+            to {
+                opacity: 1;
+                width: 80px;
+            }
+            from {
+                opacity: 0;
+                width: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .split-layout {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            
+            .intro-img {
+                height: 400px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-section {
+                flex-direction: column;
+            }
+
+            .contact-info, .contact-form-wrapper {
+                padding: 60px 30px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--bg-card);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: 0.4s ease;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .stats-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">Scharff <span>Law</span></a>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" onclick="toggleMenu()">Home</a></li>
+                <li><a href="#about" onclick="toggleMenu()">The Firm</a></li>
+                <li><a href="#practice" onclick="toggleMenu()">Practice Areas</a></li>
+                <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <span class="hero-subtitle">Raleigh, North Carolina</span>
+            <h1>Defending Your Future<br>With Unwavering Integrity</h1>
+            <div class="hero-divider"></div>
+            <div class="hero-btns">
+                <a href="#contact" class="btn-luxury">Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intro / About -->
+    <section id="about" class="intro-section">
+        <div class="container split-layout">
+            <div class="intro-text">
+                <span class="uppercase text-gold">About The Firm</span>
+                <br><br>
+                <h2>Justice is not just a concept,<br><em>it's our commitment.</em></h2>
+                <p>Navigating the legal system requires more than just knowledge of the law; it demands a strategic partner who understands the stakes. At Scharff Law Firm, we provide high-caliber criminal defense tailored to the complexities of your life.</p>
+                <div class="quote-box">
+                    "We don't just manage cases; we protect lives, reputations, and futures."
+                </div>
+                <p>Based in Raleigh, our firm operates on the principles of discretion, aggression in the courtroom, and compassion for our clients. Whether facing traffic violations or serious criminal charges, you deserve a defense that never rests.</p>
+                <br>
+                <a href="#contact" class="btn-luxury filled" style="color:#0f1115;">Our Philosophy</a>
+            </div>
+            <div class="intro-img-wrapper">
+                <div class="img-outline"></div>
+                <img src="https://images.unsplash.com/photo-1453945619913-79ec89a82c5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Law Office Detail" class="intro-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Strip -->
+    <div class="stats-section">
+        <div class="container stats-container">
+            <div class="stat-item">
+                <h3>100%</h3>
+                <p>Client Dedication</p>
+            </div>
+            <div class="stat-item">
+                <h3>24/7</h3>
+                <p>Emergency Response</p>
+            </div>
+            <div class="stat-item">
+                <h3>NC</h3>
+                <p>Statewide Practice</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Practice Areas -->
+    <section id="practice" class="services-section">
+        <div class="container">
+            <div class="section-head">
+                <span class="uppercase text-gold">Our Expertise</span>
+                <h2>Practice Areas</h2>
+                <p>Specialized defense strategies for complex legal challenges.</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-item">
+                    <i class="fas fa-wine-glass-alt service-icon"></i>
+                    <h3>DWI Defense</h3>
+                    <p>Challenging sobriety tests and procedural errors to protect your license and record.</p>
+                    <a href="#contact" class="service-link">Learn More</a>
+                </div>
+                <!-- Service 2 -->
+                <div class="service-item">
+                    <i class="fas fa-gavel service-icon"></i>
+                    <h3>Criminal Law</h3>
+                    <p>Comprehensive defense against misdemeanors and felonies with a track record of success.</p>
+                    <a href="#contact" class="service-link">Learn More</a>
+                </div>
+                <!-- Service 3 -->
+                <div class="service-item">
+                    <i class="fas fa-car-crash service-icon"></i>
+                    <h3>Traffic Violations</h3>
+                    <p>Strategic handling of speeding tickets and reckless driving to minimize insurance impact.</p>
+                    <a href="#contact" class="service-link">Learn More</a>
+                </div>
+                <!-- Service 4 -->
+                <div class="service-item">
+                    <i class="fas fa-pills service-icon"></i>
+                    <h3>Drug Offenses</h3>
+                    <p>Aggressive representation for possession and distribution charges. Specializing in marijuana defense.</p>
+                    <a href="#contact" class="service-link">Learn More</a>
+                </div>
+                <!-- Service 5 -->
+                <div class="service-item">
+                    <i class="fas fa-user-shield service-icon"></i>
+                    <h3>Domestic Violence</h3>
+                    <p>Navigating protective orders and charges with the utmost discretion and sensitivity.</p>
+                    <a href="#contact" class="service-link">Learn More</a>
+                </div>
+                <!-- Service 6 -->
+                <div class="service-item">
+                    <i class="fas fa-eraser service-icon"></i>
+                    <h3>Expungements</h3>
+                    <p>Clearing your past to open doors for your future employment and housing opportunities.</p>
+                    <a href="#contact" class="service-link">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="contact-info">
+            <div style="margin-bottom: 50px;">
+                <span class="uppercase text-gold">Get in Touch</span>
+                <h2 style="font-size: 2.5rem; margin-top: 10px;">Secure Your Defense</h2>
+            </div>
+            
+            <div class="info-item">
+                <h4>Phone</h4>
+                <a href="tel:+19194571954">(919) 457-1954</a>
+            </div>
+            
+            <div class="info-item">
+                <h4>Email</h4>
+                <a href="mailto:lgbtqbarnc@gmail.com">lgbtqbarnc@gmail.com</a>
+            </div>
+            
+            <div class="info-item">
+                <h4>Location</h4>
+                <p>Raleigh, NC & Surrounding Areas</p>
+            </div>
+
+            <div class="info-item">
+                <h4>Social</h4>
+                <div style="font-size: 1.2rem; margin-top: 10px;">
+                    <a href="#" style="margin-right: 20px;"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" style="margin-right: 20px;"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form-wrapper">
+            <h3 style="margin-bottom: 40px; color: var(--text-white);">Request Consultation</h3>
+            <form onsubmit="event.preventDefault(); alert('Thank you. Your inquiry has been received. We will contact you shortly.');">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" class="form-control" placeholder="Phone Number">
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" rows="4" placeholder="Case Details (Confidential)" required></textarea>
+                </div>
+                <button type="submit" class="btn-luxury filled">Submit Inquiry</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <a href="#" class="footer-logo">Scharff <span>Law</span></a>
+            <div class="footer-nav">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#practice">Services</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Scharff Law Firm. All Rights Reserved. Legal Disclaimer.
+            </div>
+            <div class="credits">
+                Created by: <a href="https://github.com/ttobulevicius" target="_blank">ttobulevicius</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

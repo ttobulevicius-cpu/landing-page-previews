@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scharff Law Firm | Criminal Defense Attorneys</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-dark: #1A232C;
+            --primary-gold: #E4A010;
+            --primary-gold-hover: #c4890e;
+            --text-light: #FFFFFF;
+            --text-dark: #333333;
+            --text-grey: #666666;
+            --bg-light: #F9F9F9;
+            --accent-blue: #3498DB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--primary-gold);
+            color: var(--primary-dark);
+            padding: 10px 0;
+            font-weight: 700;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Navigation */
+        .navbar {
+            background-color: var(--primary-dark);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-light);
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            font-weight: 400;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        .btn-cta {
+            background-color: var(--primary-gold);
+            color: var(--primary-dark);
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            border: 2px solid var(--primary-gold);
+        }
+
+        .btn-cta:hover {
+            background-color: transparent;
+            color: var(--primary-gold);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 35, 44, 0.85), rgba(26, 35, 44, 0.7)), url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .btn-hero {
+            background-color: var(--primary-gold);
+            color: var(--primary-dark);
+            padding: 15px 40px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            border: 2px solid var(--primary-gold);
+            display: inline-block;
+        }
+
+        .btn-hero:hover {
+            background-color: transparent;
+            color: var(--primary-gold);
+        }
+
+        /* Features / Info Bar */
+        .info-strip {
+            background-color: var(--bg-light);
+            padding: 40px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .info-item i {
+            color: var(--primary-gold);
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .info-item h4 {
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+
+        /* Services Section */
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-gold);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 40px 30px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--primary-gold);
+        }
+
+        .service-card i {
+            color: var(--primary-dark);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+        }
+
+        .service-card p {
+            color: var(--text-grey);
+            font-size: 0.95rem;
+        }
+
+        /* About Section */
+        .about-section {
+            background-color: var(--bg-light);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 25px;
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            color: var(--text-grey);
+        }
+
+        .checklist {
+            margin-top: 20px;
+        }
+
+        .checklist li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .checklist li i {
+            color: var(--primary-gold);
+            margin-right: 15px;
+        }
+
+        /* CTA / Contact Section */
+        .contact-section {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info h2 {
+            color: var(--text-light);
+            font-size: 2.5rem;
+        }
+
+        .contact-info p {
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+
+        .contact-details-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .contact-details-item i {
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            margin-right: 20px;
+            margin-top: 5px;
+        }
+
+        .contact-form {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 4px;
+            color: var(--text-dark);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+        }
+
+        .btn-submit {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-gold);
+            color: var(--primary-dark);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #12181f; /* Slightly darker than primary dark */
+            color: var(--text-light);
+            padding: 40px 0 20px;
+            text-align: center;
+            border-top: 3px solid var(--primary-gold);
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            margin: 0 15px;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        .copyright {
+            color: #777;
+            font-size: 0.8rem;
+            margin-top: 20px;
+        }
+        
+        .creator-credit {
+            color: #555;
+            font-size: 0.75rem;
+            margin-top: 10px;
+        }
+
+        /* Floating Action Button */
+        .fab-chat {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--accent-blue);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 999;
+            transition: transform 0.3s;
+        }
+
+        .fab-chat:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-grid, .contact-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-dark);
+                flex-direction: column;
+                padding: 20px 0;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                width: 100%;
+                padding: 10px 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn-cta-nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <span>FREE CONSULTATIONS AVAILABLE | CALL NOW: (919) 457-1954</span>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">Scharff Law Firm</a>
+            <div class="mobile-menu-btn" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Practice Areas</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="btn-cta-nav"><a href="#contact" class="btn-cta">Free Consultation</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Protecting Your Rights & <br> Securing Your Future</h1>
+                <p>Experienced Legal Representation in North Carolina. Specialized in Criminal Defense, DWI/DUI, and Traffic Violations.</p>
+                <a href="#contact" class="btn-hero">Schedule Free Case Review</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Strip -->
+    <div class="info-strip">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-item">
+                    <i class="fas fa-gavel"></i>
+                    <h4>Experienced Counsel</h4>
+                    <p>Over a decade of legal expertise.</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-user-shield"></i>
+                    <h4>Client Focused</h4>
+                    <p>Personalized strategies for your case.</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-comments"></i>
+                    <h4>Free Consultation</h4>
+                    <p>No obligation discussion of your rights.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Practice Areas</h2>
+                <p style="margin-top: 15px; color: var(--text-grey);">We provide aggressive representation for a wide range of criminal charges.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-wine-bottle"></i>
+                    <h3>DWI / DUI Defense</h3>
+                    <p>Comprehensive defense against impaired driving charges. We challenge evidence and protect your driving privileges.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-cannabis"></i>
+                    <h3>Drug Offenses</h3>
+                    <p>Representation for possession, distribution, and trafficking. Ask about our marijuana possession discount.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-car-crash"></i>
+                    <h3>Traffic Violations</h3>
+                    <p>Minimize points on your license and insurance increases. We handle speeding tickets and reckless driving.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-hand-holding-medical"></i>
+                    <h3>Assault & Battery</h3>
+                    <p>Protecting your record and liberty against violent crime accusations with strategic defense.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-balance-scale"></i>
+                    <h3>Domestic Violence</h3>
+                    <p>Navigating complex family situations and protective orders with discretion and strength.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-university"></i>
+                    <h3>Expungements</h3>
+                    <p>Clear your record and open doors for future employment and housing opportunities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Law Office Meeting">
+                </div>
+                <div class="about-content">
+                    <h2>Why Choose Scharff Law Firm?</h2>
+                    <p>At Scharff Law Firm, we understand that facing criminal charges is one of the most stressful experiences in a person's life. We are dedicated to navigating the complex legal system on your behalf.</p>
+                    <p>Our approach combines aggressive courtroom advocacy with compassionate client counsel. We don't just process cases; we fight for people.</p>
+                    <ul class="checklist">
+                        <li><i class="fas fa-check-circle"></i> Proven Track Record</li>
+                        <li><i class="fas fa-check-circle"></i> Available 24/7 for Emergencies</li>
+                        <li><i class="fas fa-check-circle"></i> Honest & Transparent Pricing</li>
+                        <li><i class="fas fa-check-circle"></i> Local North Carolina Expertise</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding contact-section">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Get A Free Consultation</h2>
+                    <p>Don't face the legal system alone. Contact us today for a confidential review of your case. We are here to help you understand your options.</p>
+                    
+                    <div class="contact-details-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Our Office</h4>
+                            <p>Raleigh, North Carolina</p>
+                        </div>
+                    </div>
+                    <div class="contact-details-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email Us</h4>
+                            <p>lgbtqbarnc@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-details-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h4>Call Us</h4>
+                            <p>(919) 457-1954</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form onsubmit="handleFormSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="john@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="(123) 456-7890">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Brief Description of Case</label>
+                            <textarea id="message" class="form-control" rows="4" placeholder="How can we help you?" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Submit Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">Scharff Law Firm</div>
+            <div class="footer-links">
+                <a href="#hero">Home</a>
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Scharff Law Firm. All Rights Reserved.
+            </div>
+            <div class="creator-credit">
+                Created by: ttobulevicius
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="fab-chat" onclick="alert('Live Chat Feature Coming Soon!')">
+        <i class="fas fa-comment-dots"></i>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Smooth Scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                const navLinks = document.getElementById('navLinks');
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                }
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Simple Form Handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            alert(`Thank you, ${name}. Your consultation request has been received. We will contact you shortly at the provided email.`);
+            event.target.reset();
+        }
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = "0 4px 15px rgba(0,0,0,0.4)";
+            } else {
+                navbar.style.boxShadow = "0 2px 10px rgba(0,0,0,0.3)";
+            }
+        });
+    </script>
+</body>
+</html>

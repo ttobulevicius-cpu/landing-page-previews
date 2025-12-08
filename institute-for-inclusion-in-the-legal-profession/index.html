@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institute for Inclusion in the Legal Profession</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Reset & Variables */
+        :root {
+            --primary-purple: #4C2F86;
+            --secondary-gold: #D4A76A;
+            --accent-red: #CC0000;
+            --dark-gray: #2C2C2C;
+            --text-color: #333333;
+            --light-bg: #F4F4F4;
+            --white: #FFFFFF;
+            --border-color: #E0E0E0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-purple);
+        }
+
+        a {
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        header {
+            background-color: var(--dark-gray);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--white);
+            font-family: 'Merriweather', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: var(--secondary-gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            font-size: 0.95rem;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links a:not(.btn-donate)::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary-gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:not(.btn-donate):hover::after {
+            width: 100%;
+        }
+
+        .btn-donate {
+            background-color: var(--accent-red);
+            color: var(--white);
+            padding: 10px 25px;
+            border-radius: 4px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-donate:hover {
+            background-color: #a30000;
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--white);
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(76, 47, 134, 0.95), rgba(44, 44, 44, 0.9)), url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .hero h1 {
+            color: var(--white);
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+            color: #f0f0f0;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-gold);
+            color: var(--dark-gray);
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background-color: #bf9050;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212, 167, 106, 0.4);
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .about-text h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--secondary-gold);
+            margin-top: 10px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .role-highlight {
+            color: var(--primary-purple);
+            font-weight: 700;
+            font-family: 'Merriweather', serif;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            border: 4px solid var(--secondary-gold);
+            z-index: -1;
+            border-radius: 4px;
+        }
+
+        /* Services/Initiatives Section */
+        .services {
+            padding: 100px 0;
+            background-color: var(--light-bg);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--primary-purple);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .service-link {
+            color: var(--primary-purple);
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .service-link::after {
+            content: '→';
+            margin-left: 5px;
+            transition: margin 0.3s;
+        }
+
+        .service-link:hover::after {
+            margin-left: 10px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--secondary-gold);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: #222;
+            margin-bottom: 30px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .info-item {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .info-item .icon {
+            color: var(--primary-purple);
+            font-size: 1.2rem;
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+
+        .info-item strong {
+            display: block;
+            color: var(--dark-gray);
+            font-family: 'Merriweather', serif;
+        }
+
+        .contact-form {
+            background-color: var(--light-bg);
+            padding: 40px;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-purple);
+        }
+
+        .btn-submit {
+            background-color: var(--primary-purple);
+            color: var(--white);
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #382163;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-gray);
+            color: #aaa;
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            color: var(--white);
+            font-family: 'Merriweather', serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-links {
+            margin-bottom: 30px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            margin: 0 15px;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .copyright {
+            font-size: 0.85rem;
+            border-top: 1px solid #444;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        .creator-credit {
+            font-size: 0.8rem;
+            margin-top: 10px;
+            color: #666;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                right: -100%;
+                background-color: var(--dark-gray);
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                padding: 20px 0;
+                transition: 0.3s;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .about-grid, .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                margin-top: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">IILP<span>.</span></a>
+                
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#work">Our Work</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="https://theiilp.com/support/" target="_blank" class="btn-donate">DONATE</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Driving Diversity & Inclusion in the Legal Profession</h1>
+            <p>We analyze the data, facilitate the hard conversations, and advocate for real, sustainable change in the legal industry.</p>
+            <a href="#about" class="btn-primary">Learn More</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2>Real Change. Hard Truths.</h2>
+                    <p>The Institute for Inclusion in the Legal Profession (IILP) is a non-profit organization dedicated to creating a more diverse and inclusive legal profession. We believe that for diversity and inclusion to be achieved, we must rely on data, research, and open dialogue.</p>
+                    <p>Under the leadership of our COO, we strive to bridge the gap between good intentions and measurable results.</p>
+                    
+                    <div style="margin-top: 30px; border-left: 4px solid var(--primary-purple); padding-left: 20px;">
+                        <p style="font-style: italic; color: #333; margin-bottom: 5px;">"Inclusion needs you. The future of our profession depends on our ability to embrace diversity in all its forms."</p>
+                        <span class="role-highlight">Linda Chanow</span>
+                        <span style="font-size: 0.9rem; color: #666;">Chief Operating Officer</span>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <!-- Placeholder for professional office/legal image -->
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Legal Meeting">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services / Focus Areas -->
+    <section class="services" id="work">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Initiatives</h2>
+                <p>We provide the legal industry with the tools and insights needed to foster a truly inclusive environment.</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- Card 1 -->
+                <div class="service-card">
+                    <h3>Research & Data</h3>
+                    <p>Publishing comprehensive reports and reviews on the state of diversity within the legal profession to inform policy and practice.</p>
+                    <a href="https://theiilp.com/" class="service-link">View Research</a>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="service-card">
+                    <h3>Educational Programming</h3>
+                    <p>Symposia, workshops, and seminars designed to tackle the most challenging aspects of D&I implementation.</p>
+                    <a href="https://theiilp.com/" class="service-link">See Programs</a>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="service-card">
+                    <h3>Strategic Advocacy</h3>
+                    <p>Working directly with law firms, corporations, and law schools to implement sustainable inclusion strategies.</p>
+                    <a href="https://theiilp.com/" class="service-link">Our Strategy</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Divider -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Make an Impact Today</h2>
+            <p>Your support allows us to continue our vital research and advocacy work.</p>
+            <a href="https://theiilp.com/support/" target="_blank" style="background-color: var(--accent-red); color: white; padding: 15px 35px; border-radius: 4px; font-weight: 700;">Support IILP</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Get in Touch</h2>
+                    <p style="margin-bottom: 30px;">Interested in our research, programming, or partnership opportunities? Contact us directly.</p>
+                    
+                    <div class="info-item">
+                        <span class="icon">&#9993;</span>
+                        <div>
+                            <strong>Email Linda Chanow</strong>
+                            <a href="mailto:mchanow@gmail.com" style="color: var(--primary-purple);">mchanow@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="icon">&#127760;</span>
+                        <div>
+                            <strong>Visit Official Website</strong>
+                            <a href="https://theiilp.com/" target="_blank" style="color: var(--primary-purple);">theiilp.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form onsubmit="handleForm(event)">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="email@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea rows="4" placeholder="How can we help?" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <a href="#" class="footer-logo">Institute for Inclusion in the Legal Profession</a>
+            <div class="footer-links">
+                <a href="https://theiilp.com/">Home</a>
+                <a href="#about">About</a>
+                <a href="#work">Work</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Institute for Inclusion in the Legal Profession. All rights reserved.
+                <div class="creator-credit">Created by: ttobulevicius</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            nav.classList.toggle('active');
+        }
+
+        // Simple Form Handler (Prevents default refresh for demo)
+        function handleForm(e) {
+            e.preventDefault();
+            const btn = document.querySelector('.btn-submit');
+            const originalText = btn.innerText;
+            
+            btn.innerText = "Message Sent!";
+            btn.style.backgroundColor = "#4CAF50";
+            
+            setTimeout(() => {
+                e.target.reset();
+                btn.innerText = originalText;
+                btn.style.backgroundColor = "#4C2F86";
+            }, 3000);
+        }
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

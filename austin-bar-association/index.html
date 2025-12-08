@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Austin Bar Association | Solo/Small Firm Section</title>
+    <title>Austin Bar Association | Solo & Small Firm Section</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* Variables based on brand analysis */
+        /* RESET & VARS */
         :root {
-            --primary-dark: #333333;       /* Header background */
-            --bg-light: #EEEEEE;           /* Page background */
-            --content-bg: #FFFFFF;         /* Content boxes */
-            --heading-text: #444444;       /* Headings */
-            --body-text: #666666;          /* Body text */
-            --accent-gold: #D4AF37;        /* Requested warm accent */
-            --accent-hover: #b8962e;
-            --border-color: #DDDDDD;
+            --primary-dark: #333333;
+            --secondary-dark: #222222;
+            --text-heading: #1a1a1a;
+            --text-body: #666666;
+            --bg-light: #F5F5F5; /* Slightly warmer gray than #EEE */
+            --white: #FFFFFF;
+            --accent-gold: #D4AF37;
+            --accent-gold-hover: #b5952f;
+            --border-light: #e0e0e0;
         }
 
-        /* Reset & Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -32,16 +32,18 @@
         }
 
         body {
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-body);
             background-color: var(--bg-light);
-            color: var(--body-text);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Merriweather', serif;
-            color: var(--heading-text);
-            margin-bottom: 1rem;
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--text-heading);
+            font-weight: 600;
+            line-height: 1.2;
         }
 
         a {
@@ -53,365 +55,510 @@
             list-style: none;
         }
 
-        /* Navigation */
-        header {
-            background-color: var(--primary-dark);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        .nav-container {
+        /* UTILITIES */
+        .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
-        .logo {
-            color: #fff;
-            font-size: 1.2rem;
-            font-weight: 700;
-            font-family: 'Merriweather', serif;
-            letter-spacing: 0.5px;
-        }
-
-        .logo span {
-            color: var(--accent-gold);
-            font-weight: 300;
-            font-size: 0.9em;
-            display: block;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: #ddd;
-            font-size: 0.95rem;
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            font-size: 14px;
             font-weight: 600;
+            letter-spacing: 1px;
             text-transform: uppercase;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--accent-gold);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            color: white;
-            font-size: 1.5rem;
+            border: 1px solid transparent;
             cursor: pointer;
-        }
-
-        /* Hero Section */
-        #hero {
-            height: 90vh;
-            background: linear-gradient(rgba(51, 51, 51, 0.7), rgba(51, 51, 51, 0.8)), url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 0 20px;
-            margin-top: 60px;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            color: #ffffff;
-        }
-
-        .hero-content h1 {
-            font-size: 3rem;
-            color: #ffffff;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            color: #f0f0f0;
-            margin-bottom: 2rem;
+            transition: all 0.3s ease;
         }
 
         .btn-primary {
             background-color: var(--accent-gold);
-            color: #fff;
-            padding: 15px 35px;
-            font-size: 1rem;
-            font-weight: 700;
-            border-radius: 4px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: inline-block;
-            border: 2px solid var(--accent-gold);
+            color: var(--white);
         }
 
         .btn-primary:hover {
+            background-color: var(--accent-gold-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-outline {
             background-color: transparent;
+            border: 1px solid var(--white);
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--primary-dark);
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .text-center { text-align: center; }
+        .mb-2 { margin-bottom: 20px; }
+        .mb-4 { margin-bottom: 40px; }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(51, 51, 51, 0.95);
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: padding 0.3s;
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            color: var(--white);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+
+        .logo span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 2px;
             color: var(--accent-gold);
+            text-transform: uppercase;
+            margin-top: 5px;
         }
 
-        /* Section Generic Styles */
-        .section {
-            padding: 80px 20px;
+        .nav-links {
+            display: flex;
+            gap: 40px;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
+        .nav-links a {
+            color: rgba(255,255,255,0.8);
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            background-image: linear-gradient(rgba(30, 30, 30, 0.7), rgba(30, 30, 30, 0.6)), url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to top, var(--bg-light), transparent);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding-left: 20px;
+            border-left: 5px solid var(--accent-gold);
+            margin-left: 10%;
+        }
+
+        .hero-subtitle {
+            color: var(--accent-gold);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: var(--white);
+            margin-bottom: 30px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* ABOUT / INTRO */
+        .intro-section {
+            background-color: var(--bg-light);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: var(--primary-dark);
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: var(--text-body);
+        }
+
+        .intro-image {
+            position: relative;
+        }
+
+        .intro-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 2px;
+            box-shadow: 20px 20px 0 var(--accent-gold);
+        }
+
+        /* FEATURES / SERVICES */
+        .features-section {
+            background-color: var(--white);
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 60px;
+            max-width: 700px;
+            margin: 0 auto 60px;
         }
 
         .section-header h2 {
-            font-size: 2.2rem;
-            position: relative;
-            padding-bottom: 15px;
-            display: inline-block;
-        }
-
-        .section-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background-color: var(--accent-gold);
-        }
-
-        /* About Section */
-        #about {
-            background-color: var(--content-bg);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .about-text p {
-            margin-bottom: 20px;
-            font-size: 1.05rem;
-        }
-
-        .about-image {
-            width: 100%;
-            height: 400px;
-            background-image: url('https://images.unsplash.com/photo-1505664194779-8beaceb930b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
-            background-size: cover;
-            background-position: center;
-            border-radius: 4px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        /* Services / Benefits Section */
-        #services {
-            background-color: var(--bg-light);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            background-color: var(--content-bg);
-            padding: 40px 30px;
-            text-align: center;
-            border-radius: 4px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-top: 4px solid transparent;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-            border-top: 4px solid var(--accent-gold);
-        }
-
-        .icon-circle {
-            width: 70px;
-            height: 70px;
-            background-color: #f9f9f9;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 1.5rem;
-            color: var(--accent-gold);
-        }
-
-        .service-card h3 {
-            font-size: 1.3rem;
+            font-size: 2.5rem;
             margin-bottom: 15px;
         }
 
-        /* Contact Section */
-        #contact {
-            background-color: var(--content-bg);
+        .divider {
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-gold);
+            margin: 0 auto;
         }
 
-        .contact-wrapper {
-            background-color: white;
-            box-shadow: 0 0 40px rgba(0,0,0,0.05);
-            border-radius: 8px;
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: var(--bg-light);
+            padding: 40px;
+            transition: transform 0.3s ease;
+            position: relative;
             overflow: hidden;
-            display: flex;
-            flex-wrap: wrap;
+            border: 1px solid var(--border-light);
         }
 
-        .contact-info {
-            flex: 1;
-            background-color: var(--primary-dark);
-            color: white;
-            padding: 50px;
-            min-width: 300px;
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent-gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
         }
 
-        .contact-info h3 {
-            color: white;
-            margin-bottom: 30px;
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: var(--white);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
         }
 
-        .info-item {
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
+        .feature-card:hover::before {
+            transform: scaleX(1);
         }
 
-        .info-icon {
+        .feature-icon {
+            font-size: 30px;
             color: var(--accent-gold);
-            margin-right: 15px;
-            font-size: 1.2rem;
-        }
-
-        .contact-form {
-            flex: 2;
-            padding: 50px;
-            min-width: 300px;
-        }
-
-        .form-group {
             margin-bottom: 20px;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--heading-text);
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
         }
 
-        .form-control {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-family: inherit;
-            font-size: 1rem;
-            background-color: #fcfcfc;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--accent-gold);
-            background-color: #fff;
-        }
-
-        .btn-submit {
+        /* STATS/CTA BAND */
+        .cta-band {
             background-color: var(--primary-dark);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-            text-transform: uppercase;
-        }
-
-        .btn-submit:hover {
-            background-color: var(--accent-gold);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--primary-dark);
-            color: #999;
-            padding: 40px 20px;
+            color: var(--white);
+            padding: 80px 0;
             text-align: center;
-            font-size: 0.9rem;
-            border-top: 4px solid var(--accent-gold);
         }
 
-        footer p {
+        .cta-band h2 {
+            color: var(--white);
+            font-size: 2.5rem;
             margin-bottom: 10px;
         }
 
-        .footer-credit {
-            color: #666;
-            font-size: 0.8rem;
-            margin-top: 20px;
+        .cta-band p {
+            color: #aaa;
+            max-width: 600px;
+            margin: 0 auto 30px;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.2rem;
+        /* RECENT POSTS (Mimicking functionality but better design) */
+        .news-section {
+            background-color: var(--bg-light);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .news-card {
+            background: var(--white);
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .news-card:hover {
+            border-bottom-color: var(--accent-gold);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .news-image {
+            height: 200px;
+            background-color: #ddd;
+            overflow: hidden;
+        }
+        
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.05);
+        }
+
+        .news-content {
+            padding: 25px;
+        }
+
+        .news-date {
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .news-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif; /* Cleaner for small headers */
+            font-weight: 600;
+        }
+
+        .read-more {
+            font-size: 0.9rem;
+            color: var(--text-heading);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .read-more:hover {
+            color: var(--accent-gold);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #1a1a1a;
+            color: rgba(255,255,255,0.6);
+            padding: 80px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 60px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 60px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            color: var(--white);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 992px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
             
+            .intro-image {
+                order: -1;
+            }
+            
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-content {
+                margin-left: 5%;
+                border-width: 3px;
+            }
+
             .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
                 background-color: var(--primary-dark);
                 flex-direction: column;
-                padding: 20px;
-                text-align: center;
-                gap: 15px;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.2);
             }
 
             .nav-links.active {
-                display: flex;
+                right: 0;
             }
 
             .mobile-menu-btn {
                 display: block;
+                z-index: 1001;
             }
 
-            .about-grid {
+            .news-grid {
                 grid-template-columns: 1fr;
             }
 
-            .about-image {
-                height: 300px;
-                order: -1;
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
-
-            .contact-info, .contact-form {
-                flex: 100%;
-                padding: 30px;
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
             }
         }
     </style>
@@ -419,145 +566,214 @@
 <body>
 
     <!-- Header -->
-    <header>
-        <div class="nav-container">
-            <div class="logo">
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">
                 Austin Bar Association
                 <span>Solo/Small Firm Section</span>
-            </div>
+            </a>
             <div class="mobile-menu-btn" onclick="toggleMenu()">☰</div>
             <nav class="nav-links" id="navLinks">
-                <a href="#hero">Home</a>
-                <a href="#about">About</a>
-                <a href="#services">Resources</a>
-                <a href="#contact">Join & Contact</a>
+                <a href="#" onclick="toggleMenu()">Home</a>
+                <a href="#about" onclick="toggleMenu()">About</a>
+                <a href="#benefits" onclick="toggleMenu()">Benefits</a>
+                <a href="#news" onclick="toggleMenu()">News</a>
+                <a href="#events" onclick="toggleMenu()">Events</a>
+                <a href="https://solosmallfirm.com/join" class="btn btn-primary" style="padding: 10px 20px;">Join Now</a>
             </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="hero">
+    <section class="hero">
         <div class="hero-content">
-            <h1>Empowering Austin's Independent Legal Practitioners</h1>
-            <p>Connect, collaborate, and grow with the Solo/Small Firm section of the Austin Bar Association.</p>
-            <a href="#contact" class="btn-primary">Join the Section</a>
+            <span class="hero-subtitle">Professional Excellence</span>
+            <h1>Empowering Austin's<br>Independent Attorneys</h1>
+            <p style="color: rgba(255,255,255,0.9); margin-bottom: 30px; max-width: 500px; font-size: 1.1rem;">
+                Connect with the premier legal network for solo practitioners and small firms in the Austin area.
+            </p>
+            <div class="hero-buttons">
+                <a href="https://solosmallfirm.com/" class="btn btn-primary">Join the Section</a>
+                <a href="#about" class="btn btn-outline">Learn More</a>
+            </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section">
+    <section id="about" class="section-padding intro-section">
         <div class="container">
-            <div class="section-header">
-                <h2>Who We Are</h2>
-            </div>
-            <div class="about-grid">
-                <div class="about-text">
-                    <h3>A Community of Professional Support</h3>
-                    <p>The Solo/Small Firm Section is dedicated to serving the unique needs of attorneys practicing in solo or small firm environments. We understand the challenges of managing a practice while delivering excellent legal services.</p>
-                    <p>Our mission is to provide a robust network, educational resources, and a platform for collaboration to help you thrive in the Austin legal community. Whether you are just starting out or are an experienced practitioner, our section offers the camaraderie and support system you need.</p>
-                    <p>Join over hundreds of local attorneys who leverage our collective knowledge to enhance their practice management and legal expertise.</p>
+            <div class="grid-2">
+                <div class="intro-text">
+                    <h2>Advancing the Practice of Independent Law</h2>
+                    <p>The Solo/Small Firm Section of the Austin Bar Association is dedicated to the unique needs of attorneys in solo practice or small firms.</p>
+                    <p>We provide a robust platform for networking, education, and resource sharing, ensuring that independent practitioners have the same competitive edge as large firms. Our community is built on mutual support and professional growth.</p>
+                    <a href="#benefits" style="color: var(--accent-gold); font-weight: 600; margin-top: 10px; display: inline-block;">Explore Member Benefits &rarr;</a>
                 </div>
-                <div class="about-image"></div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Legal office detail">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Services / Resources Section -->
-    <section id="services" class="section">
+    <!-- Benefits Grid -->
+    <section id="benefits" class="section-padding features-section">
         <div class="container">
             <div class="section-header">
-                <h2>Member Benefits</h2>
+                <h2>Why Join The Section?</h2>
+                <div class="divider"></div>
             </div>
-            <div class="services-grid">
+            
+            <div class="features-grid">
                 <!-- Card 1 -->
-                <div class="service-card">
-                    <div class="icon-circle">⚖️</div>
-                    <h3>Continuing Legal Education</h3>
-                    <p>Access high-quality CLE programming tailored specifically to the needs of solo and small firm practitioners. Stay compliant and competitive.</p>
+                <div class="feature-card">
+                    <div class="feature-icon">&#9878;</div> <!-- Scales Icon -->
+                    <h3>Expert CLE</h3>
+                    <p>Access high-quality Continuing Legal Education tailored specifically for the challenges and opportunities of small firm practice.</p>
                 </div>
+
                 <!-- Card 2 -->
-                <div class="service-card">
-                    <div class="icon-circle">🤝</div>
-                    <h3>Networking & Events</h3>
-                    <p>Build meaningful connections through our regular social mixers, luncheons, and roundtable discussions. Your network is your net worth.</p>
+                <div class="feature-card">
+                    <div class="feature-icon">&#128101;</div> <!-- Group Icon -->
+                    <h3>Networking</h3>
+                    <p>Connect with peers, find mentors, and build referral networks within the Austin legal community.</p>
                 </div>
+
                 <!-- Card 3 -->
-                <div class="service-card">
-                    <div class="icon-circle">💼</div>
-                    <h3>Practice Management</h3>
-                    <p>Gain insights into running a business efficiently. From technology adoption to client acquisition, we share resources that work.</p>
+                <div class="feature-card">
+                    <div class="feature-icon">&#128203;</div> <!-- Clipboard Icon -->
+                    <h3>Resources</h3>
+                    <p>Gain access to practice management tools, templates, and shared knowledge to streamline your operations.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section">
+    <!-- CTA Band -->
+    <section class="cta-band">
+        <div class="container">
+            <h2>Elevate Your Practice Today</h2>
+            <p>Join hundreds of other local attorneys who are growing their firms together.</p>
+            <a href="https://solosmallfirm.com/" class="btn btn-primary">Become a Member</a>
+        </div>
+    </section>
+
+    <!-- Recent News/Events -->
+    <section id="news" class="section-padding news-section">
         <div class="container">
             <div class="section-header">
-                <h2>Get In Touch</h2>
+                <h2>Latest Updates</h2>
+                <div class="divider"></div>
             </div>
-            <div class="contact-wrapper">
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <p style="color: #ddd; margin-bottom: 30px;">Ready to join or have questions about the section? Reach out to us directly.</p>
-                    
-                    <div class="info-item">
-                        <span class="info-icon">✉️</span>
-                        <span>abasolosmallfirm@gmail.com</span>
+
+            <div class="news-grid">
+                <!-- News Item 1 -->
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Networking Event">
                     </div>
-                    <div class="info-item">
-                        <span class="info-icon">🌐</span>
-                        <span>solosmallfirm.com</span>
+                    <div class="news-content">
+                        <span class="news-date">Upcoming Event</span>
+                        <h3>Monthly Section Luncheon</h3>
+                        <p style="font-size: 0.9rem; color: #777; margin-bottom: 15px;">Join us at the Austin Club for our monthly networking lunch and CLE presentation.</p>
+                        <a href="#" class="read-more">View Details &rarr;</a>
                     </div>
-                    <div class="info-item">
-                        <span class="info-icon">📍</span>
-                        <span>Austin, Texas</span>
+                </article>
+
+                <!-- News Item 2 -->
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Legal Documents">
                     </div>
-                </div>
-                
-                <div class="contact-form">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" class="form-control" placeholder="Jane Doe">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" class="form-control" placeholder="jane@lawoffice.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" class="form-control" rows="4" placeholder="How can we assist you?"></textarea>
-                        </div>
-                        <button type="button" class="btn-submit" onclick="alert('Thank you for your message. We will contact you shortly.')">Send Message</button>
-                    </form>
-                </div>
+                    <div class="news-content">
+                        <span class="news-date">Legal Update</span>
+                        <h3>New Legislative Changes</h3>
+                        <p style="font-size: 0.9rem; color: #777; margin-bottom: 15px;">A summary of recent legislative updates affecting solo practitioners in Texas.</p>
+                        <a href="#" class="read-more">Read Article &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- News Item 3 -->
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Meeting">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date">Member Spotlight</span>
+                        <h3>Attorney of the Month</h3>
+                        <p style="font-size: 0.9rem; color: #777; margin-bottom: 15px;">Celebrating the achievements of our members and their contributions to the bar.</p>
+                        <a href="#" class="read-more">Read Profile &rarr;</a>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer id="contact">
         <div class="container">
-            <p>&copy; 2023 Austin Bar Association | Solo/Small Firm Section. All Rights Reserved.</p>
-            <p class="footer-credit">Created by: ttobulevicius</p>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="footer-logo">Austin Bar Association</a>
+                    <p style="max-width: 300px; margin-bottom: 20px;">The Solo/Small Firm section provides education, networking, and resources to help independent attorneys thrive.</p>
+                    <a href="mailto:abasolosmallfirm@gmail.com" style="color: var(--accent-gold); font-weight: 500;">abasolosmallfirm@gmail.com</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#about">About the Section</a></li>
+                        <li><a href="#benefits">Member Benefits</a></li>
+                        <li><a href="https://solosmallfirm.com/">Official Website</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Austin Bar Association</a></li>
+                        <li><a href="#">Texas Bar CLE</a></li>
+                        <li><a href="#">Events Calendar</a></li>
+                        <li><a href="#">Join Mailing List</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Austin Bar Association Solo/Small Firm Section. All rights reserved.</p>
+                <div style="display: flex; gap: 20px;">
+                    <a href="#" style="color: #666;">Privacy Policy</a>
+                    <a href="#" style="color: #666;">Terms of Service</a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script>
+        // Mobile Menu Toggle
         function toggleMenu() {
             const nav = document.getElementById('navLinks');
             nav.classList.toggle('active');
         }
 
-        // Close mobile menu when a link is clicked
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                const nav = document.getElementById('navLinks');
-                if(nav.classList.contains('active')) {
-                    nav.classList.remove('active');
+        // Header Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth Scroll for Anchor Links (polyfill for older browsers if needed, 
+        // though css scroll-behavior handles most modern ones)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
                 }
             });
         });

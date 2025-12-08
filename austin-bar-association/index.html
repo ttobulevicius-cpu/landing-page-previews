@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Austin Bar Association | Solo/Small Firm Section</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables based on brand analysis */
+        :root {
+            --primary-dark: #333333;       /* Header background */
+            --bg-light: #EEEEEE;           /* Page background */
+            --content-bg: #FFFFFF;         /* Content boxes */
+            --heading-text: #444444;       /* Headings */
+            --body-text: #666666;          /* Body text */
+            --accent-gold: #D4AF37;        /* Requested warm accent */
+            --accent-hover: #b8962e;
+            --border-color: #DDDDDD;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--body-text);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather', serif;
+            color: var(--heading-text);
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Navigation */
+        header {
+            background-color: var(--primary-dark);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 700;
+            font-family: 'Merriweather', serif;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: var(--accent-gold);
+            font-weight: 300;
+            font-size: 0.9em;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #ddd;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-gold);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 90vh;
+            background: linear-gradient(rgba(51, 51, 51, 0.7), rgba(51, 51, 51, 0.8)), url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 60px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            color: #ffffff;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #f0f0f0;
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-gold);
+            color: #fff;
+            padding: 15px 35px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            border: 2px solid var(--accent-gold);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--accent-gold);
+        }
+
+        /* Section Generic Styles */
+        .section {
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            position: relative;
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-gold);
+        }
+
+        /* About Section */
+        #about {
+            background-color: var(--content-bg);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background-image: url('https://images.unsplash.com/photo-1505664194779-8beaceb930b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Services / Benefits Section */
+        #services {
+            background-color: var(--bg-light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--content-bg);
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 4px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--accent-gold);
+        }
+
+        .icon-circle {
+            width: 70px;
+            height: 70px;
+            background-color: #f9f9f9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: var(--content-bg);
+        }
+
+        .contact-wrapper {
+            background-color: white;
+            box-shadow: 0 0 40px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .contact-info {
+            flex: 1;
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 50px;
+            min-width: 300px;
+        }
+
+        .contact-info h3 {
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .info-item {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-icon {
+            color: var(--accent-gold);
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            flex: 2;
+            padding: 50px;
+            min-width: 300px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--heading-text);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+            background-color: #fcfcfc;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            background-color: #fff;
+        }
+
+        .btn-submit {
+            background-color: var(--primary-dark);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--accent-gold);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: #999;
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 4px solid var(--accent-gold);
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        .footer-credit {
+            color: #666;
+            font-size: 0.8rem;
+            margin-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-dark);
+                flex-direction: column;
+                padding: 20px;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                height: 300px;
+                order: -1;
+            }
+
+            .contact-info, .contact-form {
+                flex: 100%;
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                Austin Bar Association
+                <span>Solo/Small Firm Section</span>
+            </div>
+            <div class="mobile-menu-btn" onclick="toggleMenu()">☰</div>
+            <nav class="nav-links" id="navLinks">
+                <a href="#hero">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Resources</a>
+                <a href="#contact">Join & Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Empowering Austin's Independent Legal Practitioners</h1>
+            <p>Connect, collaborate, and grow with the Solo/Small Firm section of the Austin Bar Association.</p>
+            <a href="#contact" class="btn-primary">Join the Section</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Who We Are</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <h3>A Community of Professional Support</h3>
+                    <p>The Solo/Small Firm Section is dedicated to serving the unique needs of attorneys practicing in solo or small firm environments. We understand the challenges of managing a practice while delivering excellent legal services.</p>
+                    <p>Our mission is to provide a robust network, educational resources, and a platform for collaboration to help you thrive in the Austin legal community. Whether you are just starting out or are an experienced practitioner, our section offers the camaraderie and support system you need.</p>
+                    <p>Join over hundreds of local attorneys who leverage our collective knowledge to enhance their practice management and legal expertise.</p>
+                </div>
+                <div class="about-image"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services / Resources Section -->
+    <section id="services" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Member Benefits</h2>
+            </div>
+            <div class="services-grid">
+                <!-- Card 1 -->
+                <div class="service-card">
+                    <div class="icon-circle">⚖️</div>
+                    <h3>Continuing Legal Education</h3>
+                    <p>Access high-quality CLE programming tailored specifically to the needs of solo and small firm practitioners. Stay compliant and competitive.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="service-card">
+                    <div class="icon-circle">🤝</div>
+                    <h3>Networking & Events</h3>
+                    <p>Build meaningful connections through our regular social mixers, luncheons, and roundtable discussions. Your network is your net worth.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="service-card">
+                    <div class="icon-circle">💼</div>
+                    <h3>Practice Management</h3>
+                    <p>Gain insights into running a business efficiently. From technology adoption to client acquisition, we share resources that work.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p style="color: #ddd; margin-bottom: 30px;">Ready to join or have questions about the section? Reach out to us directly.</p>
+                    
+                    <div class="info-item">
+                        <span class="info-icon">✉️</span>
+                        <span>abasolosmallfirm@gmail.com</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">🌐</span>
+                        <span>solosmallfirm.com</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">📍</span>
+                        <span>Austin, Texas</span>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Jane Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="jane@lawoffice.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" rows="4" placeholder="How can we assist you?"></textarea>
+                        </div>
+                        <button type="button" class="btn-submit" onclick="alert('Thank you for your message. We will contact you shortly.')">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Austin Bar Association | Solo/Small Firm Section. All Rights Reserved.</p>
+            <p class="footer-credit">Created by: ttobulevicius</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            nav.classList.toggle('active');
+        }
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const nav = document.getElementById('navLinks');
+                if(nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

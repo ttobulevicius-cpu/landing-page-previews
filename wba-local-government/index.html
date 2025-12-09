@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WBA Local Government | Premium Legal Services</title>
+    <meta name="description" content="Providing full-range legal services to local governments since 1997.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS VARIABLES --- */
+        :root {
+            /* Brand Palette */
+            --brand-dark: #1A3B66;
+            --brand-accent: #4A8ECB;
+            --brand-green: #709E2B;
+            --cta-teal: #4CAF9D;
+            
+            /* Neutrals */
+            --white: #FFFFFF;
+            --off-white: #F9FAFB;
+            --text-dark: #2C2C2C;
+            --text-light: #6B7280;
+            --glass-border: rgba(255, 255, 255, 0.2);
+            
+            /* Effects */
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-3d: 0 10px 25px rgba(26, 59, 102, 0.25);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* --- RESET & BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--off-white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+        a { text-decoration: none; transition: var(--transition); }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        .text-center { text-align: center; }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .grid { display: grid; }
+        
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- HEADER / NAVIGATION --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+            padding: 20px 0;
+        }
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px);
+            box-shadow: var(--shadow-sm);
+            padding: 15px 0;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 1px;
+            z-index: 1001;
+            font-family: 'Playfair Display', serif;
+        }
+        header.scrolled .logo { color: var(--brand-dark); }
+        .logo span { color: var(--brand-accent); }
+        
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a {
+            color: var(--white);
+            font-weight: 500;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        header.scrolled .nav-links a { color: var(--brand-dark); }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--brand-green);
+            transition: var(--transition);
+        }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* Hamburger Menu (Mobile) */
+        .hamburger { display: none; cursor: pointer; z-index: 1001; }
+        .bar {
+            width: 25px; height: 3px; background-color: var(--white);
+            margin: 5px 0; transition: 0.4s;
+        }
+        header.scrolled .bar { background-color: var(--brand-dark); }
+        
+        /* --- HERO SECTION --- */
+        #hero {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--brand-dark);
+        }
+        /* Animated Background Gradient */
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, var(--brand-accent) 0%, transparent 40%),
+                        radial-gradient(circle, var(--brand-dark) 0%, transparent 60%);
+            opacity: 0.4;
+            animation: rotateBG 20s linear infinite;
+        }
+        @keyframes rotateBG { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(26,59,102,0.9) 0%, rgba(26,59,102,0.7) 100%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+        .hero-eyebrow {
+            color: var(--cta-teal);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 16px;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .hero-title {
+            font-size: 4.5rem;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 25px;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .hero-title span {
+            background: linear-gradient(to right, #fff, #a5c9f3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+
+        /* --- 3D BUTTONS --- */
+        .btn-container { display: flex; gap: 20px; justify-content: center; }
+        .btn {
+            display: inline-block;
+            padding: 18px 40px;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 8px;
+            cursor: pointer;
+            position: relative;
+            letter-spacing: 1px;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+        
+        /* Primary 3D Button */
+        .btn-primary {
+            background-color: var(--brand-green);
+            color: var(--white);
+            box-shadow: 0 6px 0 #4f721e, 0 15px 20px rgba(0,0,0,0.3);
+            border: none;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 0 #4f721e, 0 20px 25px rgba(0,0,0,0.3);
+        }
+        .btn-primary:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #4f721e, 0 5px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Secondary 3D Button */
+        .btn-secondary {
+            background-color: var(--cta-teal);
+            color: var(--white);
+            box-shadow: 0 6px 0 #337d70, 0 15px 20px rgba(0,0,0,0.3);
+            border: none;
+        }
+        .btn-secondary:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #337d70, 0 5px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Scroll Down Indicator */
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            color: var(--white);
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);} 40% {transform: translateY(-10px) translateX(-50%);} 60% {transform: translateY(-5px) translateX(-50%);} }
+
+        /* --- ABOUT SECTION --- */
+        #about { padding: 100px 0; background: var(--white); }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-text h2 {
+            font-size: 3rem;
+            color: var(--brand-dark);
+            margin-bottom: 25px;
+            position: relative;
+        }
+        .about-text h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--brand-accent);
+            margin-top: 15px;
+        }
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+        .about-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        .stat h3 { font-size: 2.5rem; color: var(--brand-green); margin-bottom: 5px; }
+        .stat span { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; color: var(--text-dark); }
+        
+        .about-image {
+            position: relative;
+        }
+        .image-card {
+            background: var(--brand-dark);
+            height: 500px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-3d);
+        }
+        .image-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover;
+            opacity: 0.6;
+        }
+        .floating-badge {
+            position: absolute;
+            bottom: -30px;
+            right: 40px;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow-lg);
+            max-width: 250px;
+        }
+        .floating-badge h4 { color: var(--brand-dark); font-size: 1.2rem; margin-bottom: 10px; }
+        .floating-badge p { font-size: 0.9rem; color: var(--text-light); }
+
+        /* --- SERVICES SECTION --- */
+        #services {
+            padding: 120px 0;
+            background-color: #F0F2F5;
+            position: relative;
+        }
+        .section-header { text-align: center; margin-bottom: 80px; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .section-header h2 { font-size: 2.8rem; color: var(--brand-dark); margin-bottom: 20px; }
+        .section-header p { color: var(--text-light); font-size: 1.1rem; }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 15px;
+            transition: var(--transition);
+            border-top: 5px solid transparent;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-top-color: var(--brand-green);
+        }
+        .icon-box {
+            width: 70px;
+            height: 70px;
+            background: rgba(74, 142, 203, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            color: var(--brand-accent);
+            font-size: 24px;
+            transition: var(--transition);
+        }
+        .service-card:hover .icon-box {
+            background: var(--brand-accent);
+            color: var(--white);
+        }
+        .service-card h3 { font-size: 1.4rem; color: var(--brand-dark); margin-bottom: 15px; }
+        .service-card p { color: var(--text-light); font-size: 0.95rem; line-height: 1.7; }
+
+        /* --- TESTIMONIALS / TRUST --- */
+        #trust {
+            padding: 100px 0;
+            background: var(--brand-dark);
+            color: var(--white);
+            text-align: center;
+        }
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+        .trust-item {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .stars { color: #FFD700; margin-bottom: 15px; }
+        .trust-text { font-style: italic; margin-bottom: 20px; opacity: 0.9; }
+        .trust-author { font-weight: 700; color: var(--brand-accent); }
+
+        /* --- CONTACT SECTION --- */
+        #contact { padding: 120px 0; background: var(--white); }
+        .contact-wrapper {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-3d);
+            display: flex;
+        }
+        .contact-info {
+            background: var(--brand-dark);
+            color: var(--white);
+            width: 40%;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-info::after {
+            content: ''; position: absolute; bottom: -50px; right: -50px;
+            width: 200px; height: 200px;
+            background: var(--brand-green);
+            border-radius: 50%; opacity: 0.2;
+        }
+        .info-item { margin-bottom: 30px; display: flex; align-items: flex-start; gap: 15px; }
+        .info-item svg { width: 24px; height: 24px; flex-shrink: 0; stroke: var(--brand-green); }
+        
+        .contact-form { width: 60%; padding: 60px; }
+        .form-group { position: relative; margin-bottom: 30px; }
+        .form-control {
+            width: 100%;
+            padding: 10px 0;
+            font-size: 16px;
+            color: var(--text-dark);
+            border: none;
+            border-bottom: 2px solid #ddd;
+            background: transparent;
+            outline: none;
+            transition: var(--transition);
+        }
+        .form-label {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            color: #999;
+            font-size: 16px;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+        .form-control:focus, .form-control:valid { border-bottom-color: var(--brand-green); }
+        .form-control:focus + .form-label, .form-control:valid + .form-label {
+            top: -20px;
+            font-size: 12px;
+            color: var(--brand-green);
+            font-weight: 600;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #0f233e;
+            color: var(--white);
+            padding: 80px 0 30px;
+            border-top: 5px solid var(--brand-accent);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        .footer-logo { font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 20px; display: block; color: var(--white); }
+        .footer-col h5 { color: var(--brand-green); margin-bottom: 25px; font-size: 1.1rem; letter-spacing: 1px; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: #a0aec0; font-size: 0.9rem; }
+        .footer-links a:hover { color: var(--white); padding-left: 5px; }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #718096;
+        }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 968px) {
+            .hero-title { font-size: 3rem; }
+            .about-grid, .contact-wrapper, .footer-grid, .trust-grid { grid-template-columns: 1fr; }
+            .contact-info { width: 100%; padding: 40px; }
+            .contact-form { width: 100%; padding: 40px; }
+            .floating-badge { right: 20px; bottom: -20px; }
+            .image-card { height: 400px; margin-bottom: 50px; }
+            
+            .hamburger { display: block; }
+            .nav-links {
+                position: fixed;
+                top: 0; right: -100%;
+                height: 100vh; width: 70%;
+                background: var(--brand-dark);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: 0.5s;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+            }
+            .nav-links.active { right: 0; }
+        }
+        @media (max-width: 480px) {
+            .hero-title { font-size: 2.2rem; }
+            .btn-container { flex-direction: column; }
+            .btn { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">WBA <span>Local Gov</span></a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#about" onclick="toggleMenu()">About</a></li>
+                    <li><a href="#services" onclick="toggleMenu()">Services</a></li>
+                    <li><a href="#trust" onclick="toggleMenu()">Testimonials</a></li>
+                    <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content reveal">
+            <span class="hero-eyebrow">Serving California Since 1997</span>
+            <h1 class="hero-title">Premier Legal Counsel for<br><span>Local Government</span></h1>
+            <p class="hero-subtitle">Providing exceptional legal representation with integrity, precision, and decades of specialized experience.</p>
+            
+            <div class="btn-container">
+                <a href="#contact" class="btn btn-primary btn-3d">Contact Us</a>
+                <a href="#services" class="btn btn-secondary btn-3d">Our Services</a>
+            </div>
+        </div>
+        <div class="scroll-down" onclick="document.getElementById('about').scrollIntoView()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text reveal">
+                    <h2>Experience & Integrity</h2>
+                    <p>WBA provides a full range of legal services to local government agencies. Our firm understands the nuanced challenges faced by public entities today.</p>
+                    <p>Led by Chief Operating Officer <strong>Dawn Spinhirne-Martin</strong>, we combine big-firm expertise with the personalized attention of a boutique practice. We are dedicated to navigating the complex legal landscape that governs municipalities.</p>
+                    
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h3>25+</h3>
+                            <span>Years Experience</span>
+                        </div>
+                        <div class="stat">
+                            <h3>100%</h3>
+                            <span>Dedicated Focus</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image reveal">
+                    <div class="image-card"></div>
+                    <div class="floating-badge">
+                        <h4>Expert Counsel</h4>
+                        <p>Specialized strategies tailored for city councils and public agencies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Our Practice Areas</h2>
+                <p>Comprehensive legal solutions designed specifically for the public sector.</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Card 1 -->
+                <div class="service-card reveal">
+                    <div class="icon-box">
+                        <!-- Scale Icon -->
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                    </div>
+                    <h3>Municipal Law</h3>
+                    <p>Advising city councils, boards, and commissions on Brown Act compliance, conflicts of interest, and public records.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="service-card reveal">
+                    <div class="icon-box">
+                        <!-- Gavel Icon -->
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 13l-9.5 9.5a2.5 2.5 0 0 1-3.5-3.5L10.5 9.5"/><path d="M6.5 12.5L10 16"/><path d="M21 6L14 13"/><path d="M16 2l6 6"/></svg>
+                    </div>
+                    <h3>Litigation Services</h3>
+                    <p>Robust defense for public entities in state and federal courts, handling liability claims and complex disputes.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="service-card reveal">
+                    <div class="icon-box">
+                        <!-- Document Icon -->
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    </div>
+                    <h3>Land Use & Environmental</h3>
+                    <p>Navigating CEQA, zoning regulations, and development agreements to ensure sustainable community growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust / Testimonials -->
+    <section id="trust">
+        <div class="container reveal">
+            <h2>Trusted by Communities</h2>
+            <p style="opacity: 0.8; margin-top: 10px;">Our reputation is built on results and relationships.</p>
+            
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <div class="stars">★★★★★</div>
+                    <p class="trust-text">"WBA's understanding of local government nuances is unmatched. Their counsel has been invaluable to our city council."</p>
+                    <p class="trust-author">- City Manager</p>
+                </div>
+                <div class="trust-item">
+                    <div class="stars">★★★★★</div>
+                    <p class="trust-text">"Professional, responsive, and incredibly knowledgeable. Dawn and her team are true partners in our success."</p>
+                    <p class="trust-author">- Public Works Director</p>
+                </div>
+                <div class="trust-item">
+                    <div class="stars">★★★★★</div>
+                    <p class="trust-text">"They handle complex litigation with a level of expertise that gives us complete confidence."</p>
+                    <p class="trust-author">- General Counsel</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-wrapper reveal">
+                <div class="contact-info">
+                    <h3 style="font-size: 2rem; margin-bottom: 20px;">Get in Touch</h3>
+                    <p style="margin-bottom: 40px; opacity: 0.8;">Contact Dawn Spinhirne-Martin and our team for a consultation regarding your agency's legal needs.</p>
+                    
+                    <div class="info-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        <span>dawn_spinhirne@yahoo.com</span>
+                    </div>
+                    <div class="info-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        <span>www.wbapc.com</span>
+                    </div>
+                    <div class="info-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <span>California, USA</span>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3 style="color: var(--brand-dark); margin-bottom: 30px;">Send a Message</h3>
+                    <form onsubmit="event.preventDefault(); alert('Thank you for your message. We will contact you shortly.');">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="name" required>
+                            <label for="name" class="form-label">Full Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="email" required>
+                            <label for="email" class="form-label">Email Address</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="subject" required>
+                            <label for="subject" class="form-label">Subject</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" id="message" rows="1" style="resize: none;" required></textarea>
+                            <label for="message" class="form-label">Message</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-3d" style="width: 100%; margin-top: 10px;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="footer-logo">WBA <span>Local Gov</span></a>
+                    <p style="color: #718096; line-height: 1.6;">Dedicated to providing the highest quality legal representation to public agencies across California.</p>
+                </div>
+                <div class="footer-col">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#about">About Firm</a></li>
+                        <li><a href="#services">Practice Areas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Legal</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 WBA Local Government. All rights reserved.</p>
+                <p>Designed by ttobulevicius</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 150;
+
+            revealElements.forEach((reveal) => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        // Trigger once on load
+        revealOnScroll();
+
+        // Form Auto-Resize for Textarea
+        const tx = document.getElementsByTagName("textarea");
+        for (let i = 0; i < tx.length; i++) {
+            tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
+            tx[i].addEventListener("input", OnInput, false);
+        }
+
+        function OnInput() {
+            this.style.height = "auto";
+            this.style.height = (this.scrollHeight) + "px";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eScribers | Legal Transcription Excellence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    
+    <style>
+        :root {
+            /* Brand Colors */
+            --bg-primary: #F8F8F8;
+            --text-primary: #2C2C2C;
+            --accent-red: #E23727;
+            --accent-red-dark: #c0281b;
+            --text-secondary: #666666;
+            --card-bg: #FFFFFF;
+            --gradient-red: linear-gradient(135deg, #E23727 0%, #ff5e50 100%);
+            
+            /* UI Constants */
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+            --shadow-3d: 0 15px 35px rgba(226, 55, 39, 0.25);
+            --glass: rgba(255, 255, 255, 0.7);
+            --border-radius: 16px;
+        }
+
+        /* RESET & BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--text-primary);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* UTILITIES */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .text-gradient {
+            background: var(--gradient-red);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-padding {
+            padding: 6rem 0;
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background: var(--gradient-red);
+            color: white;
+            box-shadow: var(--shadow-3d);
+            border: none;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #c0281b 0%, #E23727 100%);
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(226, 55, 39, 0.4);
+        }
+
+        .btn-primary:hover::before {
+            opacity: 1;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid rgba(0,0,0,0.05);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-red);
+            color: var(--accent-red);
+            background: rgba(226, 55, 39, 0.05);
+        }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 0;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(248, 248, 248, 0.85);
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+        }
+
+        nav.scrolled {
+            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .logo span {
+            color: var(--accent-red);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent-red);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-btn {
+            padding: 0.75rem 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            overflow: hidden;
+            background: 
+                radial-gradient(circle at 10% 10%, rgba(226, 55, 39, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(226, 55, 39, 0.03) 0%, transparent 40%);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .hero-text h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.05),
+                inset 0 0 0 1px rgba(255,255,255,0.5);
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .waveform-anim {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            height: 60px;
+            margin-bottom: 20px;
+        }
+
+        .bar {
+            width: 6px;
+            background: var(--gradient-red);
+            border-radius: 4px;
+            animation: wave 1.2s ease-in-out infinite;
+        }
+
+        .card-stat {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-red);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            line-height: 1.3;
+            color: var(--text-primary);
+        }
+
+        /* BACKGROUND ELEMENTS */
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            opacity: 0.4;
+        }
+        .shape-1 {
+            top: -10%;
+            right: -5%;
+            width: 600px;
+            height: 600px;
+            background: rgba(226, 55, 39, 0.1);
+            animation: pulse 10s infinite alternate;
+        }
+        .shape-2 {
+            bottom: -10%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: rgba(44, 44, 44, 0.05);
+            animation: pulse 15s infinite alternate-reverse;
+        }
+
+        /* FEATURES SECTION */
+        .features {
+            background: #FFFFFF;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 5rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            background: var(--bg-primary);
+            padding: 3rem 2rem;
+            border-radius: var(--border-radius);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: #FFFFFF;
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(226, 55, 39, 0.1);
+        }
+
+        .icon-box {
+            width: 70px;
+            height: 70px;
+            background: rgba(226, 55, 39, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            color: var(--accent-red);
+            font-size: 1.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .icon-box {
+            background: var(--gradient-red);
+            color: white;
+            transform: rotate(5deg);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-link {
+            color: var(--accent-red);
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .feature-link i {
+            transition: transform 0.3s ease;
+        }
+
+        .feature-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* ABOUT SECTION */
+        .about {
+            background: var(--bg-primary);
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .img-wrapper {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .img-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+        }
+
+        .img-wrapper img {
+            width: 100%;
+            display: block;
+            transition: transform 0.7s ease;
+        }
+
+        .img-wrapper:hover img {
+            transform: scale(1.05);
+        }
+
+        .ceo-quote {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            max-width: 300px;
+            border-left: 4px solid var(--accent-red);
+        }
+
+        .ceo-quote p {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+            color: var(--text-primary);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .ceo-info {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+
+        /* CONTACT SECTION */
+        .contact {
+            background: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            background: var(--bg-primary);
+            border-radius: 30px;
+            padding: 4rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-icon {
+            color: var(--accent-red);
+            font-size: 1.25rem;
+            margin-top: 5px;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem 0;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            border: none;
+            border-bottom: 2px solid #ddd;
+            outline: none;
+            background: transparent;
+            transition: all 0.3s ease;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .form-label {
+            position: absolute;
+            top: 1rem;
+            left: 0;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus,
+        .form-control:valid {
+            border-bottom-color: var(--accent-red);
+        }
+
+        .form-control:focus + .form-label,
+        .form-control:valid + .form-label {
+            top: -1.2rem;
+            font-size: 0.85rem;
+            color: var(--accent-red);
+            font-weight: 700;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 5rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-brand span {
+            color: var(--accent-red);
+        }
+
+        .footer-brand p {
+            color: #999;
+            font-size: 1rem;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #999;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-red);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* ANIMATIONS */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes wave {
+            0%, 100% { height: 20px; }
+            50% { height: 60px; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.4; }
+            100% { transform: scale(1.1); opacity: 0.2; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, visibility;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* MEDIA QUERIES */
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-text h1 {
+                font-size: 3.5rem;
+            }
+            .hero-text p {
+                margin: 0 auto 2.5rem;
+            }
+            .hero-btns {
+                justify-content: center;
+            }
+            .about-container, .contact-layout {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .ceo-quote {
+                position: relative;
+                bottom: auto;
+                right: auto;
+                margin-top: -50px;
+                margin-left: 20px;
+            }
+            .contact-layout {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-header h2 {
+                font-size: 2.25rem;
+            }
+            .copyright {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                e<span>Scribers</span>
+            </a>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">Services</a>
+                <a href="#about" class="nav-link">Why Us</a>
+                <a href="#testimonials" class="nav-link">Testimonials</a>
+                <a href="#contact" class="btn btn-primary nav-btn">Client Portal</a>
+            </div>
+            <i class="fas fa-bars" style="display: none; font-size: 1.5rem; color: var(--text-primary); cursor: pointer;" id="mobile-menu-btn"></i>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="bg-shape shape-1"></div>
+        <div class="bg-shape shape-2"></div>
+        
+        <div class="container hero-content fade-in-section">
+            <div class="hero-text">
+                <h1>Precision in <br><span class="text-gradient">Every Word.</span></h1>
+                <p>The premier transcription and reporting service for courts and agencies. Unmatched accuracy, secure technology, and deadline-driven delivery.</p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn btn-primary">Get Started</a>
+                    <a href="#features" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="glass-card">
+                    <div class="waveform-anim">
+                        <div class="bar" style="animation-delay: 0s"></div>
+                        <div class="bar" style="animation-delay: 0.1s"></div>
+                        <div class="bar" style="animation-delay: 0.2s"></div>
+                        <div class="bar" style="animation-delay: 0.3s"></div>
+                        <div class="bar" style="animation-delay: 0.5s"></div>
+                        <div class="bar" style="animation-delay: 0.2s"></div>
+                        <div class="bar" style="animation-delay: 0.4s"></div>
+                        <div class="bar" style="animation-delay: 0s"></div>
+                        <div class="bar" style="animation-delay: 0.1s"></div>
+                        <div class="bar" style="animation-delay: 0.3s"></div>
+                    </div>
+                    <h3>Intelligent Transcription</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 0;">Processing legal audio with 99.9% accuracy via proprietary workflow engines.</p>
+                    
+                    <div class="card-stat">
+                        <div class="stat-number">99%</div>
+                        <div class="stat-label">Accuracy<br>Guaranteed</div>
+                        <div class="stat-number" style="margin-left: auto;">24h</div>
+                        <div class="stat-label">Turnaround<br>Available</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features section-padding" id="features">
+        <div class="container">
+            <div class="section-header fade-in-section">
+                <h2>Built for <span class="text-gradient">Legal Excellence</span></h2>
+                <p>We combine human expertise with cutting-edge technology to deliver transcripts you can trust in court.</p>
+            </div>
+
+            <div class="feature-grid">
+                <!-- Card 1 -->
+                <div class="feature-card fade-in-section">
+                    <div class="icon-box">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3>Legal Transcription</h3>
+                    <p>Certified transcripts for hearings, depositions, and arbitrations. Admissible in court and formatted to jurisdictional standards.</p>
+                    <a href="#" class="feature-link">See details <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="feature-card fade-in-section" style="transition-delay: 0.1s;">
+                    <div class="icon-box">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure & Confidential</h3>
+                    <p>Bank-level encryption and HIPAA/CJIS compliant workflows ensure your sensitive data never falls into the wrong hands.</p>
+                    <a href="#" class="feature-link">View Security <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="feature-card fade-in-section" style="transition-delay: 0.2s;">
+                    <div class="icon-box">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Rapid Turnaround</h3>
+                    <p>From same-day delivery to standard timelines, our scalable workforce ensures we meet your deadline, every time.</p>
+                    <a href="#" class="feature-link">Check Rates <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about section-padding" id="about">
+        <div class="container about-container">
+            <div class="about-image fade-in-section">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1632&q=80" alt="Executive Meeting">
+                </div>
+                <div class="ceo-quote">
+                    <p>"We don't just type. We provide the permanent record of justice. Accuracy isn't a goal; it's our requirement."</p>
+                    <div class="ceo-info">
+                        — John Wilkinson, COO
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-text fade-in-section">
+                <h4 style="color: var(--accent-red); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">About eScribers</h4>
+                <h2>Setting the Standard in <span class="text-gradient">Transcription</span></h2>
+                <p>eScribers has grown into one of the leading legal transcription companies in the nation by adhering to a simple philosophy: leverage technology to empower the best transcribers in the industry.</p>
+                <p>We serve federal, state, and local courts, as well as private law firms, with a dedication to quality that is unmatched. Our platform simplifies the ordering, management, and delivery of transcripts.</p>
+                
+                <div style="margin-top: 2rem; display: flex; gap: 2rem;">
+                    <div>
+                        <h3 style="font-size: 2rem; color: var(--text-primary);">5M+</h3>
+                        <p style="font-size: 0.9rem; margin-bottom: 0;">Pages Transcribed</p>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 2rem; color: var(--text-primary);">50+</h3>
+                        <p style="font-size: 0.9rem; margin-bottom: 0;">Jurisdictions Served</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section-padding" id="contact">
+        <div class="container">
+            <div class="contact-layout fade-in-section">
+                <div class="contact-info">
+                    <h2>Ready to get started?</h2>
+                    <p>Contact John Wilkinson and the eScribers team today for a custom quote or to schedule a demo of our portal.</p>
+                    
+                    <div style="margin-top: 3rem;">
+                        <div class="info-item">
+                            <i class="fas fa-envelope info-icon"></i>
+                            <div>
+                                <h5>Email Us</h5>
+                                <a href="mailto:john.wilkinson@escribers.net" style="color: var(--text-secondary); font-weight: 500;">john.wilkinson@escribers.net</a>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-globe info-icon"></i>
+                            <div>
+                                <h5>Visit Website</h5>
+                                <a href="http://www.escribers.net/" style="color: var(--text-secondary); font-weight: 500;">www.escribers.net</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrapper">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" class="form-control" required>
+                            <label for="name" class="form-label">Full Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" class="form-control" required>
+                            <label for="email" class="form-label">Email Address</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="company" class="form-control" required>
+                            <label for="company" class="form-label">Company / Court</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="message" class="form-control" required>
+                            <label for="message" class="form-label">How can we help?</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2>e<span>Scribers</span></h2>
+                    <p>The definitive choice for legal transcription services across the United States.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Court Reporting</a></li>
+                        <li><a href="#">Legal Transcription</a></li>
+                        <li><a href="#">Audio Recording</a></li>
+                        <li><a href="#">Client Portal</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 eScribers. All rights reserved.</p>
+                <p>Designed by ttobulevicius</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for Scroll Animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Stop observing once visible to run animation only once
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-section').forEach((section) => {
+            observer.observe(section);
+        });
+
+        // Form handling (Visual only for demo)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button');
+            const originalText = btn.innerText;
+            
+            btn.innerHTML = '<i class="fas fa-check"></i> Sent!';
+            btn.style.background = '#27ae60';
+            
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.background = 'var(--gradient-red)';
+                this.reset();
+            }, 3000);
+        });
+
+        // Simple Mobile Menu Toggle Logic
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        // Note: For a single file demo, this is basic. 
+        // In production, we'd add a CSS class for mobile view toggle.
+        if(window.innerWidth <= 768) {
+            mobileBtn.style.display = 'block';
+            navLinks.style.display = 'none';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.left = '0';
+            navLinks.style.width = '100%';
+            navLinks.style.background = 'white';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.padding = '2rem';
+            navLinks.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+        }
+
+        mobileBtn.addEventListener('click', () => {
+            if(navLinks.style.display === 'none') {
+                navLinks.style.display = 'flex';
+            } else {
+                navLinks.style.display = 'none';
+            }
+        });
+
+        // Add random staggered animation delays to bars
+        const bars = document.querySelectorAll('.bar');
+        bars.forEach(bar => {
+            bar.style.animationDuration = Math.random() * 0.5 + 0.8 + 's';
+        });
+    </script>
+</body>
+</html>

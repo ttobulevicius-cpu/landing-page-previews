@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Law Office of Daniel T. Zemke | Premium Legal Counsel</title>
+    <meta name="description" content="Dedicated legal representation in Michigan. Daniel T. Zemke, Founder and President.">
+    
+    <!-- Google Fonts: Playfair Display for headings, Lato for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* 
+        ========================================
+        ROOT VARIABLES & RESET
+        ========================================
+        */
+        :root {
+            /* Brand Colors extracted from reference */
+            --primary-bg: #1C2B3E;      /* Deep Navy */
+            --secondary-bg: #2B2B2B;    /* Dark Grey */
+            --accent: #EEB46B;          /* Warm Gold */
+            --accent-dark: #d6984b;     /* Darker Gold for hover/shadow */
+            --text-light: #FFFFFF;      /* White */
+            --text-muted: #B0B0B0;      /* Light Grey */
+            
+            /* Spacing & Layout */
+            --container-width: 1200px;
+            --section-padding: 100px 0;
+            
+            /* Effects */
+            --glass-bg: rgba(28, 43, 62, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --shadow-soft: 0 10px 30px rgba(0,0,0,0.3);
+            --shadow-3d: 0 4px 0 var(--accent-dark);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* 
+        ========================================
+        UTILITY CLASSES
+        ========================================
+        */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .text-accent {
+            color: var(--accent);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(to right, #fff, #B0B0B0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* 
+        ========================================
+        ANIMATIONS & EFFECTS
+        ========================================
+        */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .btn-3d {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--primary-bg);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 16px 40px;
+            border-radius: 6px;
+            box-shadow: 0 4px 0 var(--accent-dark), 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.2s ease;
+            position: relative;
+            top: 0;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-3d:hover {
+            background-color: #fccc86;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 var(--accent-dark), 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .btn-3d:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 var(--accent-dark), 0 2px 5px rgba(0,0,0,0.3);
+            top: 4px;
+        }
+
+        /* 
+        ========================================
+        HEADER
+        ========================================
+        */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+            background: rgba(28, 43, 62, 0.0);
+            padding: 20px 0;
+        }
+
+        header.scrolled {
+            background: rgba(28, 43, 62, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+            color: var(--text-muted);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* 
+        ========================================
+        HERO SECTION
+        ========================================
+        */
+        #hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: var(--primary-bg);
+            z-index: 1;
+        }
+
+        /* Animated Gradient Background */
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, #2a3f5a 0%, #1C2B3E 60%);
+            animation: pulseBg 15s infinite alternate;
+            z-index: -2;
+        }
+
+        /* Overlay Pattern */
+        #hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: -1;
+        }
+
+        @keyframes pulseBg {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding-top: 80px;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .hero-title span {
+            color: var(--accent);
+            display: block;
+        }
+
+        .hero-text {
+            font-size: 1.25rem;
+            color: #dcdcdc;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            border-left: 3px solid var(--accent);
+            padding-left: 20px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            opacity: 0.7;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-10px) translateX(-50%); }
+            60% { transform: translateY(-5px) translateX(-50%); }
+        }
+
+        /* 
+        ========================================
+        SERVICES SECTION (Glassmorphism)
+        ========================================
+        */
+        #services {
+            padding: var(--section-padding);
+            position: relative;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            padding: 40px 30px;
+            border-radius: 12px;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(238, 180, 107, 0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 25px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .card-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* 
+        ========================================
+        ABOUT SECTION (Neumorphicish Dark)
+        ========================================
+        */
+        #about {
+            padding: var(--section-padding);
+            background-color: var(--secondary-bg);
+            position: relative;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: var(--shadow-soft);
+            filter: grayscale(100%) contrast(1.1);
+            transition: var(--transition);
+        }
+
+        .about-image:hover {
+            filter: grayscale(0%) contrast(1);
+        }
+
+        .about-frame {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--accent);
+            z-index: -1;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .about-image-wrapper:hover .about-frame {
+            top: 15px;
+            left: 15px;
+        }
+
+        .stat-row {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        /* 
+        ========================================
+        CONTACT SECTION
+        ========================================
+        */
+        #contact {
+            padding: var(--section-padding);
+            background: linear-gradient(180deg, var(--primary-bg) 0%, #15202e 100%);
+        }
+
+        .contact-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(43, 43, 43, 0.6);
+            padding: 60px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px 0;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #555;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-label {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .form-input:focus,
+        .form-input:valid {
+            border-bottom-color: var(--accent);
+        }
+
+        .form-input:focus ~ .form-label,
+        .form-input:valid ~ .form-label {
+            top: -10px;
+            font-size: 0.85rem;
+            color: var(--accent);
+        }
+
+        /* 
+        ========================================
+        FOOTER
+        ========================================
+        */
+        footer {
+            background-color: #111;
+            padding: 80px 0 30px;
+            border-top: 4px solid var(--accent);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-logo span { color: var(--accent); }
+
+        .footer-heading {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            transition: var(--transition);
+            color: var(--text-light);
+        }
+
+        .social-icon:hover {
+            background: var(--accent);
+            color: var(--primary-bg);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: #666;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .designer-credit {
+            font-style: italic;
+            opacity: 0.6;
+        }
+
+        /* 
+        ========================================
+        RESPONSIVE
+        ========================================
+        */
+        @media (max-width: 992px) {
+            .hero-title { font-size: 3.5rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .about-image { height: 350px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--secondary-bg);
+                flex-direction: column;
+                padding: 20px;
+                gap: 20px;
+                text-align: center;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            nav ul.active { display: flex; }
+            
+            .mobile-toggle { display: block; }
+            
+            .hero-title { font-size: 2.8rem; }
+            .footer-grid { grid-template-columns: 1fr; }
+            
+            .contact-wrapper { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-balance-scale"></i>
+                <div>DANIEL T. <span>ZEMKE</span></div>
+            </a>
+            <nav>
+                <ul id="nav-links">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About Firm</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container hero-content">
+            <span class="section-subtitle reveal">Est. 2008</span>
+            <h1 class="hero-title reveal">
+                Defending Your <br>
+                <span>Legacy & Rights.</span>
+            </h1>
+            <p class="hero-text reveal">
+                Providing sophisticated legal counsel with unwavering integrity. We navigate complex legal landscapes to deliver results that matter.
+            </p>
+            <div class="reveal">
+                <a href="#contact" class="btn-3d">Schedule Consultation</a>
+            </div>
+        </div>
+        <a href="#services" class="scroll-indicator">
+            <i class="fas fa-chevron-down" style="color: var(--accent); font-size: 2rem;"></i>
+        </a>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-subtitle">Areas of Practice</span>
+                <h2 class="section-title">Legal Expertise</h2>
+            </div>
+
+            <div class="services-grid">
+                <!-- Card 1 -->
+                <div class="service-card reveal">
+                    <div class="card-icon"><i class="fas fa-gavel"></i></div>
+                    <h3 class="card-title">Criminal Defense</h3>
+                    <p class="card-text">Aggressive representation protecting your rights and freedom with strategic defense planning.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="service-card reveal">
+                    <div class="card-icon"><i class="fas fa-users"></i></div>
+                    <h3 class="card-title">Family Law</h3>
+                    <p class="card-text">Compassionate guidance through divorce, custody disputes, and sensitive domestic matters.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="service-card reveal">
+                    <div class="card-icon"><i class="fas fa-file-signature"></i></div>
+                    <h3 class="card-title">Estate Planning</h3>
+                    <p class="card-text">Securing your legacy through meticulous wills, trusts, and future-proofing strategies.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="service-card reveal">
+                    <div class="card-icon"><i class="fas fa-briefcase"></i></div>
+                    <h3 class="card-title">Business Litigation</h3>
+                    <p class="card-text">Resolving commercial disputes with a focus on protecting your bottom line and reputation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content reveal">
+                    <span class="section-subtitle">About The Founder</span>
+                    <h2 class="section-title">Daniel T. Zemke</h2>
+                    <p style="color: #ccc; margin-bottom: 20px;">
+                        As Founder and President, Daniel Zemke has built a reputation on the pillars of trust, diligence, and results. With years of courtroom experience and a deep understanding of Michigan law, he provides personalized attention to every case.
+                    </p>
+                    <p style="color: #ccc;">
+                        We believe that high-quality legal representation shouldn't be a luxury—it's a necessity. Our firm combines large-firm capability with small-firm agility and client focus.
+                    </p>
+
+                    <div class="stat-row">
+                        <div class="stat-item">
+                            <h3>15+</h3>
+                            <p>Years Experience</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>100%</h3>
+                            <p>Dedication</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 40px;">
+                        <a href="https://dzemkelaw.com" target="_blank" class="btn-3d">View Full Bio</a>
+                    </div>
+                </div>
+
+                <div class="about-image-wrapper reveal">
+                    <div class="about-frame"></div>
+                    <!-- Using a placeholder for legal imagery -->
+                    <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Legal Books and Gavel" class="about-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-wrapper reveal">
+                <div class="text-center" style="margin-bottom: 40px;">
+                    <span class="section-subtitle">Get In Touch</span>
+                    <h2 class="section-title">Case Evaluation</h2>
+                    <p style="color: #aaa;">Fill out the form below or email us directly at <span class="text-accent">danielzemke@gmail.com</span></p>
+                </div>
+
+                <form id="contactForm" onsubmit="event.preventDefault(); alert('Thank you. Your inquiry has been received.');">
+                    <div class="form-group">
+                        <input type="text" class="form-input" id="name" required>
+                        <label for="name" class="form-label">Full Name</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" class="form-input" id="email" required>
+                        <label for="email" class="form-label">Email Address</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="tel" class="form-input" id="phone" required>
+                        <label for="phone" class="form-label">Phone Number</label>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea class="form-input" id="message" rows="1" required style="resize: none;"></textarea>
+                        <label for="message" class="form-label">Briefly describe your legal matter</label>
+                    </div>
+
+                    <div class="text-center" style="margin-top: 40px;">
+                        <button type="submit" class="btn-3d" style="width: 100%;">Submit Inquiry</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Col 1 -->
+                <div>
+                    <a href="#" class="footer-logo">DANIEL T. <span>ZEMKE</span></a>
+                    <p style="color: #888; font-size: 0.9rem; line-height: 1.8;">
+                        Providing professional legal services with integrity and dedication. Your rights are our priority.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2 -->
+                <div>
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Practice Areas</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3 -->
+                <div>
+                    <h4 class="footer-heading">Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Disclaimer</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4 -->
+                <div>
+                    <h4 class="footer-heading">Contact Info</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope text-accent" style="margin-right: 10px;"></i> danielzemke@gmail.com</li>
+                        <li><i class="fas fa-map-marker-alt text-accent" style="margin-right: 10px;"></i> Michigan, USA</li>
+                        <li><i class="fas fa-globe text-accent" style="margin-right: 10px;"></i> www.dzemkelaw.com</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <div>&copy; 2023 Law Office of Daniel T. Zemke. All Rights Reserved.</div>
+                <div class="designer-credit">Designed by ttobulevicius</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const nav = document.getElementById('nav-links');
+            nav.classList.toggle('active');
+        }
+
+        // Scroll Animations (Intersection Observer)
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null,
+            threshold: 0.15, // Trigger when 15% visible
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        revealElements.forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // Auto-resize textarea
+        const textarea = document.getElementById('message');
+        textarea.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+    </script>
+</body>
+</html>
